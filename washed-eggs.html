@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>洗選蛋｜蛋蛋小學堂</title>
+<meta name="description" content="什麼是洗選蛋？雞蛋出門前要經過清洗、風乾、照蛋、分級、包裝和噴印。看懂蛋殼上的字母，在家也能安心吃蛋。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Iansui&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.shell-fill { fill: var(--shell); stroke: var(--shell-line); stroke-width: 2.5; }
+.ink-print { fill: #2b3a67; font-family: var(--body); font-weight: 700; }
+.bubble { fill: var(--sky-soft); }
+.drop { fill: #7fb6e6; }
+
+.process { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: step; }
+.process li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 14px;
+  align-items: start;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px 18px;
+}
+.process li::before {
+  content: counter(step);
+  display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--yolk); color: #1d2742;
+  font-family: var(--display); font-size: 1.5rem;
+}
+.process h3 { font-size: 1.25rem; }
+.process p { color: var(--muted); }
+.process .why { color: var(--ink); background: var(--sky-soft); border-radius: 12px; padding: 8px 12px; margin-top: 8px; }
+
+.decoder { display: grid; grid-template-columns: 300px 1fr; gap: 24px; align-items: center; }
+.decoder svg { width: 100%; max-width: 300px; justify-self: center; }
+.letters { display: flex; gap: 8px; flex-wrap: wrap; }
+.letters .btn { min-width: 52px; font-size: 1.15rem; }
+.meaning { display: flex; flex-direction: column; gap: 6px; min-height: 7.5em; }
+.meaning b { font-family: var(--display); font-weight: 400; font-size: 1.6rem; }
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.stat .big { font-family: var(--display); font-size: 1.8rem; color: var(--yolk-deep); line-height: 1.2; }
+.stat p { color: var(--muted); font-size: 0.92rem; }
+
+.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.do-dont .card h3 { display: flex; align-items: center; gap: 8px; }
+.tag { font-family: var(--body); font-size: 0.85rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+.tag.yes { background: var(--leaf-soft); color: var(--leaf); }
+.tag.no { background: var(--berry-soft); color: var(--berry); }
+
+@media (max-width: 640px) {
+  .decoder { grid-template-columns: 1fr; }
+  .decoder svg { max-width: 240px; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .do-dont { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <nav class="nav" aria-label="網站導覽">
+    <a class="brand" href="index.html"><svg viewBox="0 0 26 30" aria-hidden="true"><path d="M13 29C5 29 1 21 1 15S5 1 13 1s12 8 12 14-4 14-12 14Z" fill="var(--shell)" stroke="var(--shell-line)" stroke-width="1.5"/><circle cx="13" cy="17" r="6" fill="var(--yolk)"/></svg>蛋蛋小學堂</a>
+    <ul>
+      <li><a href="index.html">從蛋到小雞</a></li>
+      <li><a href="washed-eggs.html" aria-current="page">洗選蛋</a></li>
+      <li><a href="farming.html">飼養方式</a></li>
+      <li><a href="taiwan-data.html">台灣養雞數據</a></li>
+      <li><a href="organic.html">哪裡買有機蛋</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <header class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">雞蛋出門前</p>
+      <h1>洗選蛋是什麼？</h1>
+      <p class="answer">洗澡、照燈、量體重、蓋印章<small>才出門到超市</small></p>
+      <p class="lede">雞蛋從雞場收集後，先送進專門的「洗選廠」<b>清洗、檢查、分級、包裝</b>，再送到商店賣，就叫洗選蛋。沒有經過這些步驟、直接從雞場裝箱拿去賣的，是傳統市場常見的「散裝蛋」。</p>
+    </div>
+    <svg viewBox="0 0 240 260" role="img" aria-label="一顆洗乾淨、蛋殼上有噴印的雞蛋，旁邊有水泡泡">
+      <ellipse cx="120" cy="246" rx="70" ry="8" fill="var(--line)"/>
+      <circle class="bubble" cx="40" cy="70" r="16"/>
+      <circle class="bubble" cx="206" cy="96" r="12"/>
+      <circle class="bubble" cx="196" cy="40" r="20"/>
+      <circle class="bubble" cx="30" cy="140" r="9"/>
+      <path class="shell-fill" d="M120 238 C 70 238 44 180 44 132 C 44 76 78 24 120 24 C 162 24 196 76 196 132 C 196 180 170 238 120 238 Z"/>
+      <path d="M86 70 q10 -22 34 -26" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.7"/>
+      <text class="ink-print" x="120" y="140" text-anchor="middle" font-size="15">溯源編碼</text>
+      <text class="ink-print" x="120" y="166" text-anchor="middle" font-size="15">日期　O</text>
+      <path class="drop" d="M54 196 q8 -14 10 -2 a6 6 0 0 1 -10 2 Z"/>
+      <path class="drop" d="M184 190 q8 -14 10 -2 a6 6 0 0 1 -10 2 Z"/>
+    </svg>
+  </header>
+
+  <section aria-labelledby="steps">
+    <p class="eyebrow">洗選廠裡發生什麼事</p>
+    <h2 id="steps">一顆洗選蛋要經過 6 個步驟</h2>
+    <ol class="process">
+      <li><div><h3>清洗</h3><p>把蛋殼上的雞糞、羽毛和泥土洗掉。</p>
+        <p class="why"><b>為什麼洗蛋的水要比蛋熱一點？</b>蛋遇到冷水會收縮，可能把髒水和細菌從蛋殼的小氣孔「吸」進去。用比蛋溫熱一點的水洗，就不會這樣。</p></div></li>
+      <li><div><h3>風乾</h3><p>把蛋吹乾，避免潮濕讓細菌繁殖。</p></div></li>
+      <li><div><h3>照蛋</h3><p>用燈光從底下照，挑出有裂縫、血斑或其他異常的蛋。</p></div></li>
+      <li><div><h3>分級</h3><p>依照重量分大小。</p></div></li>
+      <li><div><h3>包裝、標示、噴印</h3><p>裝盒，標上牧場和日期，並在每一顆蛋殼上噴印資料。</p></div></li>
+      <li><div><h3>冷藏配送</h3><p>用冷藏車送到賣場，在賣場也要放在冷藏櫃。</p></div></li>
+    </ol>
+    <p class="note-yolk"><b>不是隨便擦一擦就算。</b>依照台灣的食品良好衛生規範（GHP），<b>清洗、風乾、選別、包裝、標示</b>都要做到，才算洗選蛋。只用水或酒精擦一擦的蛋，不是洗選蛋。</p>
+  </section>
+
+  <section aria-labelledby="why">
+    <p class="eyebrow">為什麼要洗選</p>
+    <h2 id="why">洗選蛋的三個好處</h2>
+    <div class="grid-3">
+      <div class="card"><h3>減少細菌</h3><p>蛋殼外面可能沾有沙門氏菌。2023 年台灣曾發生越南麵包食物中毒案，原因就是做蛋黃醬前沒有把蛋殼清乾淨。</p></div>
+      <div class="card"><h3>挑掉壞蛋</h3><p>有裂縫的蛋比較容易被細菌污染，照蛋時會先挑掉。</p></div>
+      <div class="card"><h3>查得到來源</h3><p>出問題時，可以知道蛋是哪個雞場生的、在哪裡洗選，快速回收。</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="code" id="code">
+    <p class="eyebrow">看懂蛋殼上的字</p>
+    <h2 id="code-title">蛋殼上的噴印是什麼意思？</h2>
+    <p class="lede">從 2026 年 7 月 1 日起，洗選業者生產的洗選蛋，<b>每一顆都要噴印兩行字</b>，並登錄溯源資訊，違者最高罰新台幣 3 萬元。只要看到蛋殼上有噴印，就是合格的洗選蛋。</p>
+    <div class="card decoder">
+      <svg viewBox="0 0 300 220" role="img" aria-label="蛋殼噴印示意圖：第一行溯源編碼，第二行包裝日期和飼養方式字母">
+        <path class="shell-fill" d="M150 212 C 92 212 60 160 60 112 C 60 52 100 8 150 8 C 200 8 240 52 240 112 C 240 160 208 212 150 212 Z"/>
+        <text class="ink-print" x="150" y="104" text-anchor="middle" font-size="18">（溯源編碼）</text>
+        <text class="ink-print" x="128" y="138" text-anchor="middle" font-size="18">（包裝日期）</text>
+        <text class="ink-print" id="codeLetter" x="208" y="139" text-anchor="middle" font-size="26">O</text>
+        <path d="M60 96 H20" stroke="var(--muted)" stroke-width="1.5"/>
+        <text x="16" y="88" font-size="13" fill="var(--muted)" font-family="var(--body)">第 1 行</text>
+        <path d="M60 132 H20" stroke="var(--muted)" stroke-width="1.5"/>
+        <text x="16" y="124" font-size="13" fill="var(--muted)" font-family="var(--body)">第 2 行</text>
+      </svg>
+      <div class="meaning-wrap" style="display:flex;flex-direction:column;gap:14px;min-width:0">
+        <p><b>第 1 行：溯源編碼</b>，可以查到是哪個牧場、哪個洗選廠。<br><b>第 2 行：包裝日期</b>，加上一個代表<b>飼養方式</b>的字母。點點看：</p>
+        <div class="letters" role="group" aria-label="飼養方式字母">
+          <button class="btn" type="button" data-k="O" aria-pressed="true">O</button>
+          <button class="btn" type="button" data-k="F" aria-pressed="false">F</button>
+          <button class="btn" type="button" data-k="B" aria-pressed="false">B</button>
+          <button class="btn" type="button" data-k="E" aria-pressed="false">E</button>
+          <button class="btn" type="button" data-k="C" aria-pressed="false">C</button>
+        </div>
+        <div class="meaning note-sky" aria-live="polite">
+          <b id="mName">O：有機</b>
+          <p id="mText"></p>
+        </div>
+      </div>
+    </div>
+    <p class="note">圖是示意圖，實際噴印的編碼格式以蛋殼上的字為準。各種飼養方式的比較，請看<a href="farming.html">飼養方式</a>。</p>
+  </section>
+
+  <section aria-labelledby="vs">
+    <p class="eyebrow">比一比</p>
+    <h2 id="vs">洗選蛋和散裝蛋</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>洗選蛋</th><th>散裝蛋</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">蛋殼</th><td>洗乾淨了</td><td>可能沾有雞糞、羽毛</td></tr>
+          <tr><th scope="row">檢查</th><td>有照蛋，挑掉裂蛋</td><td>不一定有</td></tr>
+          <tr><th scope="row">來源和日期</th><td>每顆都有噴印，查得到</td><td>只有外箱貼標籤，看不出是哪天的蛋</td></tr>
+          <tr><th scope="row">保存</th><td>一定要冷藏</td><td>常放在常溫的攤位上</td></tr>
+          <tr><th scope="row">價格</th><td>每顆大約貴 0.5～1 元</td><td>比較便宜</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede">散裝蛋不是不能吃，只是食安風險比較高。傳統市場的環境常常比較濕熱，夏天更明顯，也看不出蛋是不是放了好幾天。</p>
+  </section>
+
+  <section aria-labelledby="now">
+    <p class="eyebrow">台灣現在的情況</p>
+    <h2 id="now">洗選蛋還在慢慢變多</h2>
+    <div class="stats">
+      <div class="stat"><span class="big">4 成多</span><p>台灣雞蛋經過洗選的比例</p></div>
+      <div class="stat"><span class="big">約 113 家</span><p>投入洗選的業者</p></div>
+      <div class="stat"><span class="big">2～3 億元</span><p>蓋一座大型洗選場至少要花的錢</p></div>
+      <div class="stat"><span class="big">6 成 5～7 成</span><p>業者預估未來 2～3 年可以達到的洗選比例</p></div>
+    </div>
+    <p class="lede">洗選場除了洗選機，還要有冷藏庫和冷藏配送車，投資很大，所以不是每個蛋農都做得起。加上很多人習慣在傳統市場買便宜的散裝蛋，全面洗選推動得比較慢。台灣原本計畫 2020 年全面洗選，後來暫緩，現在用逐顆噴印一步一步往前走。</p>
+  </section>
+
+  <section aria-labelledby="home">
+    <p class="eyebrow">在家裡</p>
+    <h2 id="home">買回家以後要注意</h2>
+    <div class="do-dont">
+      <div class="card">
+        <h3><span class="tag yes">要</span>這樣做</h3>
+        <ul class="plain">
+          <li>在<b>冷藏櫃</b>拿蛋，買回家<b>馬上放冰箱</b>。</li>
+          <li>要煮之前，再洗蛋。</li>
+          <li>摸過生蛋要用肥皂<b>洗手</b>，特別是接著要做沙拉、三明治這類不再加熱的食物時。</li>
+          <li>看清楚蛋殼噴印和包裝上的日期。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="tag no">不要</span>這樣做</h3>
+        <ul class="plain">
+          <li>不要把洗選蛋放在常溫。蛋殼外面原本有一層天然保護膜，洗的時候會一起洗掉，所以洗選蛋要冷藏。</li>
+          <li>不要買回家先洗再放冰箱。</li>
+          <li>有裂縫的蛋不要吃。</li>
+        </ul>
+      </div>
+    </div>
+    <p class="kid">講給小孩聽：「洗選蛋就是先洗澡、照 X 光、量體重、蓋印章，才出門到超市的雞蛋。」</p>
+  </section>
+
+  <section aria-labelledby="quiz">
+    <p class="eyebrow">考考你</p>
+    <h2 id="quiz">洗選蛋小測驗</h2>
+    <div class="quiz" id="quizBox"></div>
+    <p class="score" id="score" aria-live="polite"></p>
+  </section>
+
+  <section aria-labelledby="more">
+    <p class="eyebrow">繼續探險</p>
+    <h2 id="more">下一站去哪裡？</h2>
+    <div class="next">
+      <a href="farming.html"><b>飼養方式</b><span>O、F、B、E、C 哪一種比較好？</span></a>
+      <a href="index.html"><b>從蛋到小雞</b><span>21 天，從一個小點變成小雞。</span></a>
+      <a href="organic.html"><b>哪裡買有機蛋</b><span>有機牧場和台中的店家。</span></a>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <p>資料來源：中央社〈蛋殼上食安革命／逐顆噴印上路　一顆0.5元成本藏台灣全面洗選魔鬼細節〉，2026 年 9 月 13 日，<a href="https://www.cna.com.tw/news/afe/202609130025.aspx">cna.com.tw</a>。</p>
+    <p>給大人：洗選比例、業者家數和成本是報導中業者與協會提供的數字，會隨時間改變。</p>
+  </footer>
+</main>
+
+<script src="assets/quiz.js"></script>
+<script>
+(function () {
+  var M = {
+    O: ["有機", "雞吃有機飼料，可以到戶外活動，用藥也有嚴格限制，要通過有機驗證。通常最貴。"],
+    F: ["放牧", "雞除了在雞舍裡走動，還可以到戶外曬太陽、吃草和蟲。"],
+    B: ["平飼", "雞不關籠子，在雞舍地上自由走動，可以抓地、沙浴。"],
+    E: ["豐富化籠飼", "還是住在籠子裡，但籠子比較大，有棲架、產蛋箱和磨爪的地方。"],
+    C: ["一般籠飼", "住在小籠子裡，幾乎不能走動或展開翅膀。通常最便宜。"]
+  };
+  var btns = document.querySelectorAll(".letters .btn");
+  var name = document.getElementById("mName"), text = document.getElementById("mText"), letter = document.getElementById("codeLetter");
+  function pick(k) {
+    btns.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.k === k ? "true" : "false"); });
+    name.textContent = k + "：" + M[k][0];
+    text.textContent = M[k][1];
+    letter.textContent = k;
+  }
+  btns.forEach(function (b) { b.addEventListener("click", function () { pick(b.dataset.k); }); });
+  pick("O");
+
+  renderQuiz(document.getElementById("quizBox"), document.getElementById("score"), [
+    ["用水或酒精把蛋擦一擦，就算是洗選蛋。", false, "這是假的。要經過清洗、風乾、選別、包裝、標示，才算洗選蛋。"],
+    ["洗蛋的水要比蛋冷，才能把細菌洗掉。", false, "這是假的。水要比蛋熱一點，不然蛋收縮時會把髒水吸進氣孔。"],
+    ["洗選蛋買回家要放冰箱。", true, "這是真的。洗的時候會洗掉蛋殼的天然保護膜，所以要冷藏。"],
+    ["蛋殼第二行的字母 B，代表平飼。", true, "這是真的。O 有機、F 放牧、B 平飼、E 豐富化籠飼、C 一般籠飼。"],
+    ["蛋買回家，應該先洗乾淨再放冰箱。", false, "這是假的。要煮之前再洗就好。"]
+  ]);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>台灣養雞數據｜蛋蛋小學堂</title>
+<meta name="description" content="台灣一年生產多少雞蛋？蛋雞都住在哪裡？整理自農業部 114 年畜牧生產統計。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Iansui&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.hero-num { font-family: var(--display); font-size: clamp(3rem, 12vw, 5.5rem); line-height: 1; color: var(--yolk-deep); font-variant-numeric: tabular-nums; }
+.hero-num small { font-size: 0.4em; color: var(--ink); }
+.chart { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.chart h3 { font-size: 1.2rem; }
+.chart .sub { color: var(--muted); font-size: 0.9rem; }
+.fact .big { font-family: var(--display); font-size: 1.8rem; color: var(--yolk-deep); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.fact p { color: var(--muted); font-size: 0.95rem; }
+</style>
+</head>
+<body>
+<header class="site-head">
+  <nav class="nav" aria-label="網站導覽">
+    <a class="brand" href="index.html"><svg viewBox="0 0 26 30" aria-hidden="true"><path d="M13 29C5 29 1 21 1 15S5 1 13 1s12 8 12 14-4 14-12 14Z" fill="var(--shell)" stroke="var(--shell-line)" stroke-width="1.5"/><circle cx="13" cy="17" r="6" fill="var(--yolk)"/></svg>蛋蛋小學堂</a>
+    <ul>
+      <li><a href="index.html">從蛋到小雞</a></li>
+      <li><a href="washed-eggs.html">洗選蛋</a></li>
+      <li><a href="farming.html">飼養方式</a></li>
+      <li><a href="taiwan-data.html" aria-current="page">台灣養雞數據</a></li>
+      <li><a href="organic.html">哪裡買有機蛋</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section style="padding-top:48px">
+    <p class="eyebrow">2025 年（民國 114 年）</p>
+    <h1>台灣一年生多少顆蛋？</h1>
+    <p class="hero-num">94.5 億<small> 顆</small></p>
+    <p class="lede">平均<b>每天大約 2,590 萬顆</b>。用全台約 2,300 萬人來算，每人一年大約分到 400 顆，差不多一天一顆多（這只是用產量直接平均，不包含進口和出口）。</p>
+  </section>
+
+  <section aria-labelledby="eggs">
+    <h2 id="eggs">雞蛋產量一直增加</h2>
+    <div class="chart">
+      <h3>全年雞蛋產量（億顆）</h3>
+      <div class="bars" role="list">
+        <div class="bar-row" role="listitem" title="2023 年：80.0 億顆，產值 338.5 億元"><span class="label">2023 年</span><div class="bar-track"><div class="bar" style="width:calc(80.0 / 94.5 * 80%)"></div><span class="val">80.0 億</span></div></div>
+        <div class="bar-row" role="listitem" title="2024 年：89.4 億顆，產值 279.9 億元"><span class="label">2024 年</span><div class="bar-track"><div class="bar" style="width:calc(89.4 / 94.5 * 80%)"></div><span class="val">89.4 億</span></div></div>
+        <div class="bar-row" role="listitem" title="2025 年：94.5 億顆，產值 265.4 億元"><span class="label">2025 年</span><div class="bar-track"><div class="bar" style="width:80%"></div><span class="val">94.5 億</span></div></div>
+      </div>
+      <p class="sub">來源：農業部〈114 年畜牧生產量值〉表 1。</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>年份</th><th class="num">雞蛋產量</th><th class="num">產值</th><th class="num">產地均價（每顆）</th></tr></thead>
+        <tbody>
+          <tr><td>2023</td><td class="num">80.0 億顆</td><td class="num">338.5 億元</td><td class="num">約 4.2 元</td></tr>
+          <tr><td>2024</td><td class="num">89.4 億顆</td><td class="num">279.9 億元</td><td class="num">約 3.1 元</td></tr>
+          <tr><td>2025</td><td class="num">94.5 億顆</td><td class="num">265.4 億元</td><td class="num">約 2.8 元</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lede">兩年內產量多了快 15 億顆，但產值反而變少，因為 2023 年缺蛋時價格特別高。雞蛋占全台畜牧總產值的 12.35%。</p>
+  </section>
+
+  <section aria-labelledby="price">
+    <h2 id="price">蛋價和每天的產蛋量</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>年份</th><th class="num">每天平均產蛋</th><th class="num">雞蛋產地價格</th></tr></thead>
+        <tbody>
+          <tr><td>2016</td><td class="num">10.5 萬箱</td><td class="num">46.8 元／公斤</td></tr>
+          <tr><td>2023</td><td class="num">11.2 萬箱</td><td class="num">70.5 元／公斤</td></tr>
+          <tr><td>2024</td><td class="num">12.6 萬箱</td><td class="num">52.2 元／公斤</td></tr>
+          <tr><td>2025</td><td class="num">13.4 萬箱</td><td class="num">46.9 元／公斤</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="plain">
+      <li><b>產量一直增加</b>：從 2016 年到 2025 年大約多了 28%，2025 年是近十年最高。農業部的說明是，國人飲食習慣改變，對雞蛋的需求增加了。</li>
+      <li><b>2023 年蛋價特別高</b>：那一年產量下降，產地價格漲到每公斤 70.5 元左右，就是大家記得的「缺蛋潮」。2025 年已經回到每公斤 47 元左右。</li>
+    </ul>
+    <p class="note">來源：農業部統計處〈雞蛋產地價格及日均產蛋箱數〉，價格資料原本來自中華民國養雞協會。網站沒有說明「一箱」等於幾顆蛋，所以這裡不換算。</p>
+  </section>
+
+  <section aria-labelledby="where">
+    <h2 id="where">蛋雞都住在哪裡？</h2>
+    <p class="lede">2025 年底，全台共有 <b>2,180 個蛋雞場</b>，養了 <b>4,698 萬隻蛋雞</b>，比台灣的人口還多一倍。另外還有約 53 萬隻「蛋種雞」，專門生下會孵出小蛋雞的受精蛋。</p>
+    <div class="chart">
+      <h3>各縣市蛋雞隻數（萬隻）</h3>
+      <div class="bars" role="list">
+        <div class="bar-row" role="listitem" title="彰化縣：931 場，2,183 萬隻，占 46.5%"><span class="label">彰化縣</span><div class="bar-track"><div class="bar" style="width:80%"></div><span class="val">2,183 萬（46.5%）</span></div></div>
+        <div class="bar-row" role="listitem" title="屏東縣：320 場，634 萬隻，占 13.5%"><span class="label">屏東縣</span><div class="bar-track"><div class="bar" style="width:calc(634 / 2183 * 80%)"></div><span class="val">634 萬（13.5%）</span></div></div>
+        <div class="bar-row" role="listitem" title="嘉義縣：183 場，544 萬隻，占 11.6%"><span class="label">嘉義縣</span><div class="bar-track"><div class="bar" style="width:calc(544 / 2183 * 80%)"></div><span class="val">544 萬（11.6%）</span></div></div>
+        <div class="bar-row" role="listitem" title="臺南市：193 場，479 萬隻，占 10.2%"><span class="label">臺南市</span><div class="bar-track"><div class="bar" style="width:calc(479 / 2183 * 80%)"></div><span class="val">479 萬（10.2%）</span></div></div>
+        <div class="bar-row" role="listitem" title="高雄市：134 場，348 萬隻，占 7.4%"><span class="label">高雄市</span><div class="bar-track"><div class="bar" style="width:calc(348 / 2183 * 80%)"></div><span class="val">348 萬（7.4%）</span></div></div>
+        <div class="bar-row" role="listitem" title="其他縣市合計：約 510 萬隻，占 10.9%"><span class="label">其他縣市</span><div class="bar-track"><div class="bar dim" style="width:calc(510 / 2183 * 80%)"></div><span class="val">約 510 萬（10.9%）</span></div></div>
+      </div>
+      <p class="sub">來源：農業部〈114 年底各類畜禽飼養場數及在養量〉表 3。「其他縣市」由總數減去前五名計算。</p>
+    </div>
+    <p class="note-yolk"><b>彰化是台灣的雞蛋大本營。</b>全台將近一半的蛋雞都在彰化，2025 年彰化生產了約 42.9 億顆蛋，大約占全台的 45%。台中的蛋雞場有 44 個，約 61 萬隻。</p>
+  </section>
+
+  <section aria-labelledby="fun">
+    <h2 id="fun">其他有趣的數字</h2>
+    <div class="grid-3">
+      <div class="card fact"><span class="big">1.08 億隻</span><p>全台所有的雞（蛋雞加肉雞）在養數量，大約是人口的 4.7 倍。</p></div>
+      <div class="card fact"><span class="big">4.1 億隻</span><p>2025 年全年供應屠宰的肉雞。</p></div>
+      <div class="card fact"><span class="big">約 2.1 萬隻</span><p>平均一個蛋雞場養的雞（中央畜產會 2025 年第 3 季調查）。</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="more">
+    <p class="eyebrow">繼續探險</p>
+    <h2 id="more">下一站去哪裡？</h2>
+    <div class="next">
+      <a class="star" href="washed-eggs.html"><b>洗選蛋</b><span>台灣只有 4 成多的蛋經過洗選，為什麼？</span></a>
+      <a href="farming.html"><b>飼養方式</b><span>這些雞住在什麼樣的家？</span></a>
+    </div>
+  </section>
+
+  <footer class="site-foot">
+    <p>資料來源：農業部統計處〈畜牧類農情統計調查結果（含產值）（114 年）〉，2026 年 3 月 16 日發布，<a href="https://agrstat.moa.gov.tw/moasdweb/book/Book.aspx?PeriodName=PeriodAll&amp;CategoryID=18">agrstat.moa.gov.tw</a>；〈雞蛋產地價格及日均產蛋箱數〉，<a href="https://agrstat.moa.gov.tw/moasdweb/visualize/VisualChart.aspx?c=A020204&amp;s=2">agrstat.moa.gov.tw</a>；中央社 2026 年 9 月 13 日報導。</p>
+    <p>給大人：「每人一年約 400 顆」和「每顆約 2.8 元」是用總數簡單相除，只是幫助理解的估算。2023 年的價格是從圖表提示讀出，可能有小誤差。</p>
+  </footer>
+</main>
+</body>
+</html>
