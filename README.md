@@ -11,6 +11,8 @@
 | `buy-eggs.html` | 哪裡買雞蛋：四種雞蛋去哪買、全聯動福蛋、有機蛋牧場、台中市店家、鴨蛋鵪鶉蛋等其他的蛋 |
 | `organic.html` | 舊網址，自動轉到 `buy-eggs.html` |
 
-純 HTML、CSS、JavaScript，不需要建置。共用樣式在 `assets/style.css`，小測驗在 `assets/quiz.js`。
+文字寫給國小低年級的小朋友看；地址、電話、統計表等詳細資料收在每頁的「給爸爸媽媽看」區塊。
+
+純 HTML、CSS、JavaScript，不需要建置。共用樣式在 `assets/style.css`，小測驗在 `assets/quiz.js`，插圖（自己畫的 SVG）在 `assets/img/`。
 
 資料來源：農業部統計處、中央社（2026/9/13）、各店家官網。

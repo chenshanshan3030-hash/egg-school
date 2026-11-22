@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <circle cx="80" cy="80" r="78" fill="#e2eef9"/>
+  <rect x="46" y="22" width="68" height="120" rx="10" fill="#ffffff" stroke="#5c6f8a" stroke-width="3"/>
+  <path d="M46 60 H114" stroke="#5c6f8a" stroke-width="3"/>
+  <path d="M104 34 v16 M104 72 v24" stroke="#5c6f8a" stroke-width="4" stroke-linecap="round"/>
+  <rect x="54" y="104" width="52" height="14" rx="4" fill="#d8e6f3" stroke="#5c6f8a" stroke-width="2"/>
+  <ellipse cx="62" cy="102" rx="6" ry="8" fill="#f3e4cd" stroke="#b98f5e" stroke-width="2"/>
+  <ellipse cx="76" cy="102" rx="6" ry="8" fill="#f3e4cd" stroke="#b98f5e" stroke-width="2"/>
+  <ellipse cx="90" cy="102" rx="6" ry="8" fill="#f3e4cd" stroke="#b98f5e" stroke-width="2"/>
+  <g stroke="#3f8fd6" stroke-width="3" stroke-linecap="round">
+    <path d="M70 32 v20 M61 37 l18 10 M61 47 l18 -10"/>
+  </g>
+  <rect x="120" y="96" width="34" height="22" rx="6" fill="#3f8fd6"/>
+  <text x="137" y="112" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="13" fill="#ffffff">4°C</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <circle cx="80" cy="80" r="78" fill="#fdf0cf"/>
+  <g stroke="#a88a62" stroke-width="2.5">
+    <ellipse cx="54" cy="96" rx="20" ry="25" fill="#efe2c8"/>
+    <ellipse cx="106" cy="96" rx="20" ry="25" fill="#efe2c8"/>
+    <ellipse cx="80" cy="64" rx="20" ry="25" fill="#efe2c8"/>
+  </g>
+  <g fill="#5b4630">
+    <circle cx="46" cy="88" r="4"/><circle cx="60" cy="100" r="5"/><circle cx="50" cy="108" r="3"/><circle cx="62" cy="84" r="2.5"/>
+    <circle cx="100" cy="86" r="5"/><circle cx="114" cy="98" r="3.5"/><circle cx="104" cy="110" r="4"/><circle cx="116" cy="84" r="2"/>
+    <circle cx="72" cy="56" r="3.5"/><circle cx="86" cy="62" r="5"/><circle cx="78" cy="76" r="3"/><circle cx="90" cy="50" r="2.5"/>
+  </g>
+  <text x="80" y="140" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#8a6a44">小小一顆</text>
+</svg>

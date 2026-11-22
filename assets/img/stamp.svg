@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <circle cx="80" cy="80" r="78" fill="#fdf0cf"/>
+  <path d="M22 110 h116 v22 q-58 12 -116 0 Z" fill="#c9a77c" stroke="#8a6a44" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M22 110 q14 -12 29 0 q14 -12 29 0 q14 -12 29 0 q14 -12 29 0" fill="none" stroke="#8a6a44" stroke-width="3"/>
+  <ellipse cx="80" cy="66" rx="32" ry="42" fill="#f3e4cd" stroke="#b98f5e" stroke-width="3"/>
+  <path d="M64 40 q6 -12 18 -14" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <rect x="58" y="60" width="44" height="6" rx="3" fill="#2b3a67"/>
+  <rect x="62" y="74" width="26" height="6" rx="3" fill="#2b3a67"/>
+  <text x="96" y="81" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="11" fill="#2b3a67">O</text>
+</svg>

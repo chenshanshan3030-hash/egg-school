@@ -115,8 +115,8 @@
     <div class="hero-text">
       <p class="eyebrow">給小小科學家</p>
       <h1>買回家的雞蛋，會變成小雞嗎？</h1>
-      <p class="answer">幾乎不會！<small>往下看就知道為什麼</small></p>
-      <p class="lede">母雞不需要公雞也會下蛋。超市賣的蛋大多來自只養母雞的農場，蛋裡沒有變成小雞的「種子」。就算是有種子的蛋，也要一直保持溫暖整整 21 天，小雞才會出生。</p>
+      <p class="answer">不會喔！<small>往下看就知道為什麼</small></p>
+      <p class="lede">雞媽媽自己就會生蛋。可是，要有雞爸爸幫忙，蛋才會變成小雞。超市的蛋，大多是只有雞媽媽的農場生的，所以不會變成小雞。</p>
     </div>
     <svg viewBox="0 0 240 260" role="img" aria-label="一顆裂開的蛋，小雞從裡面探出頭">
       <ellipse cx="120" cy="246" rx="80" ry="8" fill="var(--line)"/>
@@ -140,37 +140,32 @@
     <h2 id="two">要變成小雞，兩件事都要有</h2>
     <div class="grid-2">
       <div class="card cond">
-        <svg viewBox="0 0 72 72" aria-hidden="true">
-          <circle cx="36" cy="36" r="32" class="yolk"/>
-          <circle cx="36" cy="30" r="11" class="disc-ring"/>
-          <circle cx="36" cy="30" r="4" class="disc"/>
-        </svg>
-        <h3>1. 蛋要受精</h3>
-        <p>母雞和公雞交配之後，生下的蛋才是「受精蛋」，裡面才有可能長出小雞。沒有公雞的農場，生的蛋都是沒受精的蛋。</p>
+        <div class="pic-row">
+          <img class="pic-sm" src="assets/img/hen.svg" alt="雞媽媽">
+          <img class="pic-sm" src="assets/img/rooster.svg" alt="雞爸爸">
+        </div>
+        <h3>1. 要有雞爸爸</h3>
+        <p>雞媽媽和雞爸爸在一起，生下的蛋才可能變成小雞。這種蛋叫做「受精蛋」。</p>
       </div>
       <div class="card cond">
-        <svg viewBox="0 0 72 72" aria-hidden="true">
-          <rect x="29" y="6" width="14" height="46" rx="7" fill="none" stroke="var(--ink)" stroke-width="3"/>
-          <circle cx="36" cy="56" r="11" fill="var(--berry)" stroke="var(--ink)" stroke-width="3"/>
-          <rect x="33" y="22" width="6" height="30" fill="var(--berry)"/>
-          <path d="M46 16 h8 M46 26 h8 M46 36 h8" stroke="var(--ink)" stroke-width="2.5"/>
-        </svg>
-        <h3>2. 蛋要被「孵」</h3>
-        <ul>
-          <li>溫度保持在大約 <b>37.5°C</b></li>
-          <li>空氣要有點濕濕的</li>
-          <li>每天<b>翻蛋</b>好幾次，母雞會用嘴和身體幫蛋翻身</li>
-          <li>連續大約 <b>21 天</b></li>
-        </ul>
+        <div class="pic-row"><img class="pic-sm" src="assets/img/hen-sitting.svg" alt="雞媽媽坐在蛋上面孵蛋"></div>
+        <h3>2. 要一直暖暖的</h3>
+        <p>雞媽媽會坐在蛋上，讓蛋一直暖暖的，大約 <b>37.5 度</b>，跟我們的身體差不多。她還會幫蛋翻身。這樣要孵 <b>21 天</b>。</p>
       </div>
     </div>
-    <p class="note-sky"><b>那冰箱裡的蛋呢？</b>冰箱裡大約只有 4～7°C，對小雞來說太冷了。就算是受精蛋，放在冰箱裡也會停止發育，不會孵出來。</p>
+    <div class="card with-pic">
+      <img class="pic" src="assets/img/fridge.svg" alt="放著雞蛋的冰箱">
+      <div>
+        <h3>那冰箱裡的蛋呢？</h3>
+        <p>冰箱太冷了！小雞要暖暖的才會長大，所以冰箱裡的蛋不會變成小雞。</p>
+      </div>
+    </div>
   </section>
 
   <section aria-labelledby="days">
     <p class="eyebrow">拉拉看</p>
     <h2 id="days">21 天，從一個小點變成小雞</h2>
-    <p class="lede">這是受精蛋被好好孵著的時候，蛋裡面發生的事。拉動下面的拉桿，或按「播放」，看看小雞怎麼一天一天長大。</p>
+    <p class="lede">受精蛋被孵的時候，蛋裡面會發生什麼事呢？拉一拉下面的拉桿，或按「播放」，看小雞一天一天長大。</p>
     <div class="incubator">
       <div class="stage">
         <svg id="eggView" viewBox="0 0 240 300" role="img" aria-label="蛋的內部"></svg>
@@ -226,17 +221,24 @@
         <text class="lbl" x="456" y="220">蛋黃</text>
       </svg>
     </div>
-    <p class="lede"><b>氣室</b>在蛋比較圓的那一端，蛋殼裡面有兩層薄薄的膜，氣室就在兩層膜中間。蛋殼上還有好幾千個小到看不見的氣孔，讓空氣可以進出。</p>
+    <ul class="plain">
+      <li><b>蛋殼</b>：保護蛋的外衣。上面有好多好多看不見的小洞，空氣可以跑進跑出。</li>
+      <li><b>氣室</b>：在蛋比較圓的那一邊，是裝空氣的小房間。</li>
+      <li><b>蛋白</b>：透明、黏黏的，煮熟會變白。</li>
+      <li><b>蛋黃</b>：黃黃圓圓的，是小雞寶寶的食物。</li>
+      <li><b>繫帶</b>：白白的、像扭扭的繩子，把蛋黃拉在中間。</li>
+      <li><b>胚盤</b>：蛋黃上的小白點。</li>
+    </ul>
 
-    <h3>看蛋黃上的小白點，就知道有沒有受精</h3>
+    <h3>看看小白點，就知道是哪一種蛋</h3>
     <div class="grid-2 compare">
       <figure>
         <svg viewBox="0 0 120 120" aria-hidden="true">
           <circle cx="60" cy="60" r="56" class="yolk"/>
           <path class="disc" d="M55 52 q6 -5 11 1 q4 6 -2 10 q-6 4 -11 -1 q-4 -5 2 -10 Z"/>
         </svg>
-        <b>沒受精</b>
-        <figcaption>小白點小小的，形狀不太整齊。超市的蛋幾乎都長這樣。</figcaption>
+        <b>沒有雞爸爸</b>
+        <figcaption>小白點小小的，歪歪的。超市的蛋幾乎都長這樣。</figcaption>
       </figure>
       <figure>
         <svg viewBox="0 0 120 120" aria-hidden="true">
@@ -244,47 +246,55 @@
           <circle cx="60" cy="60" r="16" class="disc-ring"/>
           <circle cx="60" cy="60" r="7" class="disc" opacity="0.85"/>
         </svg>
-        <b>有受精</b>
-        <figcaption>像一個小箭靶，外面有一圈，中間比較透明，大約 3～4 毫米。</figcaption>
+        <b>有雞爸爸</b>
+        <figcaption>小白點像一個小箭靶，外面有一圈。</figcaption>
       </figure>
     </div>
-    <p class="note-berry"><b>常見的誤會：</b>蛋黃兩邊白白的、像扭扭的繩子那個東西叫「繫帶」，它的工作是把蛋黃固定在蛋的中間，<b>不是小雞</b>。偶爾看到的小紅點是母雞下蛋時小血管破掉留下的，也不是小雞。</p>
+    <p class="note-berry"><b>猜猜看：</b>蛋黃旁邊白白的繩子是小雞嗎？<b>不是喔！</b>那是繫帶。有時候看到的小紅點，也不是小雞。</p>
   </section>
 
   <section aria-labelledby="farm">
     <p class="eyebrow">養雞場的祕密</p>
-    <h2 id="farm">早餐的蛋和孵小雞的蛋，來自不同的地方</h2>
+    <h2 id="farm">早餐的蛋和孵小雞的蛋，住在不同的地方</h2>
     <div class="lane market">
-      <h3>早餐吃的蛋</h3>
-      <ol class="steps">
-        <li>蛋雞場：只養母雞</li><li class="arrow" aria-hidden="true">→</li>
-        <li>沒受精的蛋</li><li class="arrow" aria-hidden="true">→</li>
-        <li><a href="washed-eggs.html">洗選廠：洗澡、照燈、分大小、蓋印章</a></li><li class="arrow" aria-hidden="true">→</li>
-        <li>超市和你家冰箱</li>
-      </ol>
+      <div class="with-pic" style="display:flex">
+        <img class="pic-sm" src="assets/img/hen.svg" alt="雞媽媽">
+        <div>
+          <h3>早餐吃的蛋</h3>
+          <ol class="steps">
+            <li>只有雞媽媽的農場</li><li class="arrow" aria-hidden="true">→</li>
+            <li><a href="washed-eggs.html">洗澡、照燈、蓋印章</a></li><li class="arrow" aria-hidden="true">→</li>
+            <li>超市</li><li class="arrow" aria-hidden="true">→</li>
+            <li>你家冰箱</li>
+          </ol>
+        </div>
+      </div>
     </div>
     <div class="lane hatch">
-      <h3>會孵出小雞的蛋</h3>
-      <ol class="steps">
-        <li>種雞場：公雞和母雞一起養</li><li class="arrow" aria-hidden="true">→</li>
-        <li>受精蛋</li><li class="arrow" aria-hidden="true">→</li>
-        <li>孵化場的孵蛋機：37.5°C、自動翻蛋</li><li class="arrow" aria-hidden="true">→</li>
-        <li>21 天後小雞出生</li>
-      </ol>
+      <div class="with-pic" style="display:flex">
+        <img class="pic-sm" src="assets/img/chick.svg" alt="小雞">
+        <div>
+          <h3>會變成小雞的蛋</h3>
+          <ol class="steps">
+            <li>雞爸爸和雞媽媽一起住</li><li class="arrow" aria-hidden="true">→</li>
+            <li>暖暖的孵蛋機</li><li class="arrow" aria-hidden="true">→</li>
+            <li>21 天後，小雞出生！</li>
+          </ol>
+        </div>
+      </div>
     </div>
-    <p class="lede">雞也分成兩種：專門下蛋的「蛋雞」，和長得很快、專門給人吃肉的「肉雞」。肉雞大約 5～7 週就長大了。</p>
   </section>
 
   <section aria-labelledby="facts">
     <p class="eyebrow">雞的冷知識</p>
     <h2 id="facts">說給同學聽</h2>
     <div class="grid-3">
-      <div class="card fact"><span class="big">24～26 小時</span><p>母雞大約這麼久下一顆蛋，差不多一天一顆。</p></div>
-      <div class="card fact"><span class="big">約 300 顆</span><p>現在的蛋雞一年可以下這麼多顆蛋。</p></div>
-      <div class="card fact"><span class="big">10 幾顆</span><p>雞的野生祖先「紅原雞」，一年只下這麼多。</p></div>
-      <div class="card fact"><span class="big">18～22 週</span><p>小母雞長到這麼大，才開始下第一顆蛋。</p></div>
-      <div class="card fact"><span class="big">白殼、褐殼</span><p>蛋殼的顏色是雞的品種決定的，跟營養沒有關係。</p></div>
-      <div class="card fact"><span class="big">破殼齒</span><p>小雞嘴巴尖端有一顆小硬點，用來啄破蛋殼，出生後幾天就會掉。</p></div>
+      <div class="card fact"><span class="big">一天一顆</span><p>雞媽媽差不多一天生一顆蛋。</p></div>
+      <div class="card fact"><span class="big">約 300 顆</span><p>雞媽媽一年可以生這麼多蛋！</p></div>
+      <div class="card fact"><span class="big">10 幾顆</span><p>很久以前的野生雞，一年只生這麼多。</p></div>
+      <div class="card fact"><span class="big">5 個月</span><p>小雞長大差不多 5 個月，才會生第一顆蛋。</p></div>
+      <div class="card fact"><span class="big">白蛋、紅蛋</span><p>蛋殼的顏色，是看雞媽媽是哪一種雞。白蛋、紅蛋一樣營養。</p></div>
+      <div class="card fact"><span class="big">破殼齒</span><p>小雞敲開蛋殼用的小硬點，出生幾天後就會掉。</p></div>
     </div>
   </section>
 
@@ -292,13 +302,13 @@
     <p class="eyebrow">在家做實驗</p>
     <h2 id="try">打一顆蛋，找找看</h2>
     <ul class="checklist">
-      <li><label><input type="checkbox" id="c1"><span>把蛋打在白色的盤子上，找到蛋黃上的<b>小白點（胚盤）</b>。它是不規則的小點，還是像箭靶？</span></label></li>
-      <li><label><input type="checkbox" id="c2"><span>找到蛋黃兩邊白白、扭扭的<b>繫帶</b>。</span></label></li>
-      <li><label><input type="checkbox" id="c3"><span>看看蛋殼裡面那層<b>薄膜</b>，在蛋比較圓的那一端找找看有沒有<b>氣室</b>留下的空間。</span></label></li>
-      <li><label><input type="checkbox" id="c4"><span>比一比濃濃的蛋白和水水的蛋白，它們不一樣喔。</span></label></li>
-      <li><label><input type="checkbox" id="c5"><span>看看蛋殼上有沒有<b>噴印的字</b>，第二行最後的字母是什麼？到<a href="washed-eggs.html#code">洗選蛋</a>那頁查查看它的意思。</span></label></li>
+      <li><label><input type="checkbox" id="c1"><span>請大人把蛋打在白色盤子上。找到蛋黃上的<b>小白點</b>了嗎？</span></label></li>
+      <li><label><input type="checkbox" id="c2"><span>找到白白、扭扭的<b>繫帶</b>。</span></label></li>
+      <li><label><input type="checkbox" id="c3"><span>看看蛋殼裡面，有一層<b>薄薄的膜</b>。</span></label></li>
+      <li><label><input type="checkbox" id="c4"><span>蛋白有濃濃的，也有水水的，摸摸盤子比比看。</span></label></li>
+      <li><label><input type="checkbox" id="c5"><span>蛋殼上有沒有<b>印字</b>？最後的字母是什麼？去<a href="washed-eggs.html#code">洗選蛋</a>那頁查查看。</span></label></li>
     </ul>
-    <p class="note">大人小提醒：摸過生蛋以後記得用肥皂洗手。打開的蛋可以拿去煮來吃，不要浪費。</p>
+    <p class="note-yolk">做完實驗，記得用肥皂<b>洗手</b>。打開的蛋請大人煮來吃，不要浪費喔！</p>
   </section>
 
   <section aria-labelledby="quiz">
@@ -319,9 +329,18 @@
     </div>
   </section>
 
-  <footer class="site-foot">
-    <p>給大人：這頁是給小朋友看的簡單版本。孵化天數、溫度和產蛋數字都是常見的大約值，不同品種和環境會有差異。</p>
-  </footer>
+  <details class="grownup">
+    <summary>給爸爸媽媽看（比較詳細的說明）</summary>
+    <ul class="plain">
+      <li>受精蛋要孵化，需要溫度約 37.5°C、適當濕度、定時翻蛋，約 21 天。孵化場從第 18 天起停止翻蛋。冰箱約 4～7°C，受精蛋放冰箱會停止發育。</li>
+      <li>未受精的胚盤是小而不規則的白點；受精的胚盤像箭靶，外圈較白、中間較透明，直徑約 3～4 毫米。</li>
+      <li>繫帶的作用是把蛋黃固定在蛋的中央。蛋裡偶爾出現的小血點，是母雞產蛋時微血管破裂留下的，不是胚胎。</li>
+      <li>蛋殼上有好幾千個氣孔；氣室位在蛋的鈍端，介於兩層殼膜之間。</li>
+      <li>母雞約每 24～26 小時產一顆蛋，約 18～22 週齡開始產蛋；現代蛋雞一年約產 300 顆，野生祖先紅原雞一年只產十幾顆。</li>
+      <li>雞分成「蛋雞」和「肉雞」兩大類，肉雞約 5～7 週就能上市。供孵化的受精蛋來自公母同養的「種雞場」。</li>
+    </ul>
+    <p>孵化天數、溫度和產蛋數字都是常見的大約值，不同品種和環境會有差異。</p>
+  </details>
 </main>
 
 <script src="assets/quiz.js"></script>
@@ -329,17 +348,17 @@
 (function () {
   var EGG = "M120 286 C 62 286 28 200 28 132 C 28 66 70 20 120 20 C 170 20 212 66 212 132 C 212 200 178 286 120 286 Z";
   var STAGES = [
-    [1, 1, "開始發育", "受精蛋一被保持溫暖，蛋黃上的胚盤就開始分裂、長大。這就是小雞的起點。"],
-    [2, 2, "心臟開始跳", "大約第 2 天，小小的心臟就開始跳動了！蛋黃上也開始長出血管。"],
-    [3, 4, "血管和眼睛", "血管像網子一樣布滿蛋黃，把蛋黃的營養送給胚胎。黑黑的眼睛也看得出來了。"],
-    [5, 6, "長出翅膀和腳", "身體兩邊冒出小小的突起，以後會變成翅膀和腳。"],
-    [7, 9, "嘴巴和腳趾", "嘴巴開始成形，腳上分出了腳趾，嘴巴尖端還有一顆「破殼齒」。現在看起來有一點像鳥了。"],
-    [10, 13, "長出羽毛", "皮膚上長出一點一點的羽毛，慢慢蓋滿全身。腳上的爪子也越來越硬。"],
-    [14, 16, "轉向氣室", "小雞開始轉身，把頭轉向蛋比較圓的那一端。那裡有一個裝滿空氣的「氣室」。"],
-    [17, 18, "準備出生", "蛋白差不多被小雞用光了，小雞已經塞滿整顆蛋。從第 18 天開始，孵蛋機就不再翻蛋，讓小雞擺好出生的姿勢。"],
-    [19, 19, "第一口空氣", "剩下的蛋黃被吸進小雞的肚子，當作出生後頭幾天的「便當」。小雞把嘴戳進氣室，第一次用肺呼吸，有時候還會在蛋裡小聲叫！"],
-    [20, 20, "啄出小洞", "小雞用破殼齒在蛋殼上啄出第一個小洞。很費力氣，所以會啄一啄、休息一下。"],
-    [21, 21, "破殼而出！", "小雞一邊轉圈一邊啄，把蛋殼啄開一圈，再用力推開，出來了！剛出生時羽毛濕濕的，幾個小時後就變得蓬鬆。"]
+    [1, 1, "開始長大", "蛋黃上有一個小白點。蛋暖暖的，小白點就開始慢慢長大。"],
+    [2, 2, "心臟跳跳", "小小的心臟開始噗通、噗通地跳了！"],
+    [3, 4, "血管和眼睛", "紅紅的血管長出來，把蛋黃的營養送給寶寶。黑黑的眼睛也出現了。"],
+    [5, 6, "翅膀和腳", "身體旁邊冒出小小的芽，以後會變成翅膀和腳。"],
+    [7, 9, "嘴巴和腳趾", "嘴巴和腳趾長出來了。嘴巴前面有一個小硬點，叫「破殼齒」，以後要用來敲開蛋殼。"],
+    [10, 13, "長出羽毛", "身上長出軟軟的羽毛，爪子也變硬了。"],
+    [14, 16, "轉個身", "小雞轉身，把頭朝向蛋比較圓的那一邊。那裡有一個裝空氣的小房間，叫「氣室」。"],
+    [17, 18, "快要出來了", "小雞長得好大，把蛋塞得滿滿的。"],
+    [19, 19, "吸第一口氣", "剩下的蛋黃被吸進肚子裡，變成小雞的便當。小雞吸了第一口空氣，還會在蛋裡小聲叫！"],
+    [20, 20, "啄一個小洞", "小雞用破殼齒，在蛋殼上啄出一個小洞。好累喔，要休息一下再繼續。"],
+    [21, 21, "出來了！", "小雞一邊轉圈一邊啄，推開蛋殼，出來了！一開始濕濕的，過幾個小時就變得毛茸茸。"]
   ];
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function lerp(a, b, t) { return a + (b - a) * t; }
@@ -452,11 +471,11 @@
   show(1);
 
   renderQuiz(document.getElementById("quizBox"), document.getElementById("score"), [
-    ["母雞沒有公雞，也會下蛋。", true, "這是真的。母雞自己就會下蛋，只是這些蛋沒有受精，不會變成小雞。"],
-    ["蛋黃旁邊白白、像繩子的東西是小雞。", false, "這是假的。那是「繫帶」，用來把蛋黃固定在中間。"],
-    ["受精蛋放在冰箱裡，21 天後也會孵出小雞。", false, "這是假的。冰箱太冷了，小雞要大約 37.5°C 才會長大。"],
-    ["褐色殼的蛋比白色殼的蛋更營養。", false, "這是假的。蛋殼顏色是雞的品種決定的，營養差不多。"],
-    ["小雞出生前，會先在蛋裡用肺呼吸氣室的空氣。", true, "這是真的。大約第 19 天，小雞把嘴戳進氣室，吸到第一口空氣。"]
+    ["雞媽媽自己就會生蛋。", true, "是真的！只是沒有雞爸爸，蛋不會變成小雞。"],
+    ["蛋黃旁邊白白的繩子是小雞。", false, "是假的！那是繫帶，把蛋黃拉在中間。"],
+    ["把蛋放在冰箱裡，21 天後會變成小雞。", false, "是假的！冰箱太冷了，小雞要暖暖的才會長大。"],
+    ["紅色的蛋比白色的蛋更營養。", false, "是假的！顏色不一樣，營養差不多。"],
+    ["小雞還在蛋裡，就會小聲叫。", true, "是真的！快出來的時候，小雞會在蛋裡叫。"]
   ]);
 })();
 </script>

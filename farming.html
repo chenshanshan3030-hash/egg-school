@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>飼養方式｜蛋蛋小學堂</title>
-<meta name="description" content="一般籠飼、豐富化籠飼、平飼、放牧、有機：五種飼養方式的雞蛋，營養、動物福利和安全性比一比。">
+<meta name="description" content="雞媽媽住在哪裡？一般籠飼、豐富化籠飼、平飼、放牧、有機，五種雞媽媽的家，用小朋友看得懂的方式介紹。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Iansui&family=Noto+Sans+TC:wght@400;500;700&display=swap">
@@ -16,8 +16,8 @@
   padding: 14px 10px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; min-width: 0;
 }
 .home svg { width: 100%; max-width: 110px; height: auto; }
-.home b { font-family: var(--display); font-weight: 400; font-size: 1.15rem; }
-.home span { color: var(--muted); font-size: 0.88rem; }
+.home b { font-family: var(--display); font-weight: 400; font-size: 1.2rem; }
+.home span.say { color: var(--muted); font-size: 0.9rem; }
 .room { fill: var(--sky-soft); stroke: var(--muted); stroke-width: 2; }
 .bars-cage { stroke: var(--muted); stroke-width: 2; }
 .hen { fill: #f4e3c3; stroke: #b98f5e; stroke-width: 1.5; }
@@ -25,10 +25,9 @@
 .grass { fill: var(--leaf); }
 .sun { fill: var(--yolk); }
 .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.verdict { font-family: var(--display); font-size: 1.2rem; }
-.recs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-.table-wrap td:last-child, .table-wrap th:last-child, .table-wrap td:nth-child(2) { white-space: nowrap; }
-.recs li { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 18px; }
+.verdict { font-family: var(--display); font-size: 1.5rem; color: var(--yolk-deep); }
+.recs { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 8px; }
+details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-child, details.grownup .table-wrap td:nth-child(2) { white-space: nowrap; }
 @media (max-width: 720px) {
   .homes { grid-template-columns: repeat(3, 1fr); }
   .three { grid-template-columns: 1fr; }
@@ -52,38 +51,77 @@
 
 <main class="wrap">
 
-  <section style="padding-top:48px">
-    <p class="eyebrow">雞媽媽住在哪裡</p>
-    <h1>哪一種飼養方式的蛋比較好？</h1>
-    <p class="answer" style="font-size:1.3rem">營養差不多，雞媽媽的生活差很多</p>
-    <p class="lede">沒有一種是「全部都最好」的，要看你在意什麼。安全性主要看管理和保存，不太看飼養方式。蛋殼噴印第二行的字母，就是這顆蛋的飼養方式（看<a href="washed-eggs.html#code">洗選蛋</a>）。</p>
-  </section>
+  <header class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">雞媽媽的家</p>
+      <h1>雞媽媽住在哪裡？</h1>
+      <p class="answer">每個雞媽媽的家都不一樣</p>
+      <p class="lede">有的雞媽媽住在小小的籠子裡，有的可以在大房子裡走來走去，有的還可以到院子曬太陽。蛋殼上印的字母，會告訴你雞媽媽住在哪一種家。</p>
+    </div>
+    <img class="pic-lg" src="assets/img/farm.svg" alt="紅色的雞舍和草地上的雞">
+  </header>
 
   <section aria-labelledby="homes">
     <h2 id="homes">五種家，五個字母</h2>
     <div class="homes">
       <div class="home">
         <svg viewBox="0 0 110 80" aria-hidden="true"><rect class="room" x="20" y="20" width="70" height="50"/><ellipse class="hen" cx="55" cy="52" rx="20" ry="14"/><path class="comb" d="M66 36 q3 -6 6 0 Z"/><path class="bars-cage" d="M32 20 V70 M44 20 V70 M66 20 V70 M78 20 V70"/></svg>
-        <span class="code">C</span><b>一般籠飼</b><span>小房間</span>
+        <span class="code">C</span><b>小房間</b><span class="say">很擠，不能走來走去。</span>
       </div>
       <div class="home">
         <svg viewBox="0 0 110 80" aria-hidden="true"><rect class="room" x="8" y="14" width="94" height="58"/><path d="M14 40 H50" stroke="var(--shell-line)" stroke-width="4"/><ellipse class="hen" cx="70" cy="56" rx="16" ry="12"/><path class="comb" d="M79 42 q3 -6 6 0 Z"/><path class="bars-cage" d="M24 14 V72 M88 14 V72"/></svg>
-        <span class="code">E</span><b>豐富化籠飼</b><span>大一點的房間</span>
+        <span class="code">E</span><b>大一點的房間</b><span class="say">有可以站的棍子，也有生蛋的小窩。</span>
       </div>
       <div class="home">
         <svg viewBox="0 0 110 80" aria-hidden="true"><path class="room" d="M6 74 V30 L55 6 L104 30 V74 Z"/><ellipse class="hen" cx="38" cy="60" rx="14" ry="10"/><ellipse class="hen" cx="74" cy="62" rx="14" ry="10"/></svg>
-        <span class="code">B</span><b>平飼</b><span>大客廳</span>
+        <span class="code">B</span><b>大客廳</b><span class="say">可以走來走去、抓抓地、洗沙澡。</span>
       </div>
       <div class="home">
         <svg viewBox="0 0 110 80" aria-hidden="true"><circle class="sun" cx="92" cy="16" r="10"/><path class="room" d="M4 74 V40 L28 26 L52 40 V74 Z"/><path class="grass" d="M52 74 H108 V68 Q80 62 52 68 Z"/><ellipse class="hen" cx="80" cy="60" rx="14" ry="10"/></svg>
-        <span class="code">F</span><b>放牧</b><span>有院子的家</span>
+        <span class="code">F</span><b>有院子的家</b><span class="say">可以到外面曬太陽、吃草和小蟲。</span>
       </div>
       <div class="home">
         <svg viewBox="0 0 110 80" aria-hidden="true"><circle class="sun" cx="92" cy="16" r="10"/><path class="room" d="M4 74 V40 L28 26 L52 40 V74 Z"/><path class="grass" d="M52 74 H108 V68 Q80 62 52 68 Z"/><path d="M62 60 q4 -12 8 0 M90 60 q4 -12 8 0" stroke="var(--leaf)" stroke-width="3" fill="none"/><ellipse class="hen" cx="80" cy="62" rx="12" ry="9"/></svg>
-        <span class="code">O</span><b>有機</b><span>院子＋有機飼料</span>
+        <span class="code">O</span><b>有機的家</b><span class="say">有院子，還吃有機的食物。</span>
       </div>
     </div>
+  </section>
 
+  <section aria-labelledby="better">
+    <p class="eyebrow">想一想</p>
+    <h2 id="better">哪一種蛋比較好呢？</h2>
+    <div class="three">
+      <div class="pic-card">
+        <img class="pic" src="assets/img/nest.svg" alt="鳥巢裡的三顆蛋">
+        <b>營養</b>
+        <span class="verdict">差不多</span>
+        <p>不管住在哪裡，蛋都一樣營養。最重要的是雞媽媽吃什麼。</p>
+      </div>
+      <div class="pic-card">
+        <img class="pic" src="assets/img/hen-sitting.svg" alt="開心的雞媽媽">
+        <b>雞媽媽舒不舒服</b>
+        <span class="verdict">差很多</span>
+        <p>家越大，雞媽媽越能走路、拍翅膀、洗沙澡，過得比較開心。</p>
+      </div>
+      <div class="pic-card">
+        <img class="pic" src="assets/img/fridge.svg" alt="冰箱">
+        <b>乾不乾淨</b>
+        <span class="verdict">看怎麼保存</span>
+        <p>有沒有洗乾淨、有沒有放冰箱，比住在哪裡更重要。</p>
+      </div>
+    </div>
+    <p class="kid">小補充：「蛋的營養都差不多，差別在雞媽媽住的是小房間、大房間、大客廳，還是有院子的房子。」</p>
+  </section>
+
+  <section aria-labelledby="quiz">
+    <p class="eyebrow">考考你</p>
+    <h2 id="quiz">字母小測驗</h2>
+    <div class="quiz" id="quizBox"></div>
+    <p class="score" id="score" aria-live="polite"></p>
+  </section>
+
+  <details class="grownup">
+    <summary>給爸爸媽媽看（比較詳細的說明）</summary>
     <div class="table-wrap">
       <table>
         <thead><tr><th>代碼</th><th>飼養方式</th><th>母雞過得怎樣</th><th>價格</th></tr></thead>
@@ -96,67 +134,38 @@
         </tbody>
       </table>
     </div>
-  </section>
-
-  <section aria-labelledby="angles">
-    <p class="eyebrow">從三個角度看</p>
-    <h2 id="angles">營養、動物福利、食品安全</h2>
-    <div class="three">
-      <div class="card">
-        <h3>營養</h3>
-        <p class="verdict">差別不大</p>
-        <ul class="plain">
-          <li>蛋的營養主要看<b>母雞吃什麼</b>，跟住在哪裡的關係比較小。</li>
-          <li>放牧的雞曬得到太陽、吃得到草和蟲，有些研究發現維生素 D 或 Omega-3 稍高，但差異不大，每個牧場也不一樣。</li>
-          <li>蛋黃顏色深淺主要跟飼料有關，不代表比較營養。</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>動物福利</h3>
-        <p class="verdict">差很多</p>
-        <ul class="plain">
-          <li>從 C 到 O，母雞能做的自然行為越來越多：走動、展翅、沙浴、在產蛋箱裡下蛋。</li>
-          <li>如果你在意母雞過得好不好，這是各種飼養方式之間<b>最大的差別</b>。</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>食品安全</h3>
-        <p class="verdict">各有優缺點</p>
-        <ul class="plain">
-          <li><b>籠飼</b>：雞和糞便分開，蛋殼比較乾淨，也比較少接觸野鳥。</li>
-          <li><b>放牧</b>：雞會接觸土壤和野鳥，要注意禽流感、寄生蟲和土壤污染。台灣曾發生放牧雞場的蛋戴奧辛超標，原因跟雞場的土壤環境有關。</li>
-          <li>影響更大的其實是：<b>有沒有洗選、有沒有冷藏、有沒有過期</b>。</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section aria-labelledby="rec">
-    <p class="eyebrow">怎麼選</p>
-    <h2 id="rec">我們的建議</h2>
+    <h3>營養</h3>
+    <p>蛋的營養主要取決於飼料，跟飼養空間關係較小。放牧雞能曬太陽、吃草和蟲，有些研究發現蛋的維生素 D 或 Omega-3 稍高，但差異不大，各牧場也不同。蛋黃顏色深淺主要跟飼料有關，不代表比較營養。</p>
+    <h3>食品安全</h3>
+    <p>籠飼的雞和糞便分開，蛋殼較乾淨，也較少接觸野鳥。放牧的雞會接觸土壤和野鳥，要注意禽流感、寄生蟲和土壤污染；台灣曾發生放牧雞場的蛋戴奧辛超標，原因與雞場土壤環境有關。對安全影響更大的是：有沒有洗選、有沒有冷藏、有沒有過期。</p>
+    <h3>怎麼選</h3>
     <ol class="recs">
-      <li><b>先顧安全。</b>不管哪種飼養方式，都選<a href="washed-eggs.html">有噴印的洗選蛋</a>，在冷藏櫃拿，看清楚日期，買回家馬上放冰箱。</li>
-      <li><b>預算有限：</b>一般洗選蛋（C）就有基本的安全把關。</li>
-      <li><b>想對母雞好一點、又不想太貴：</b>平飼（B）是很好的折衷。全聯的「動物福利蛋」專區就有豐富化籠飼、平飼和放牧的蛋。</li>
-      <li><b>很在意動物福利或有機飼料：</b>選放牧（F）或有機（O），可以參考<a href="buy-eggs.html">哪裡買雞蛋</a>。</li>
+      <li>先顧安全：不管哪種飼養方式，都選<a href="washed-eggs.html">有噴印的洗選蛋</a>，在冷藏櫃拿，看清楚日期，買回家馬上冷藏。</li>
+      <li>預算有限：一般洗選蛋（C）就有基本的安全把關。</li>
+      <li>想對母雞好一點又不想太貴：平飼（B）是很好的折衷，全聯的「動物福利蛋」專區就有。</li>
+      <li>很在意動物福利或有機飼料：選放牧（F）或有機（O），可參考<a href="buy-eggs.html">哪裡買雞蛋</a>。</li>
     </ol>
-    <p class="note-berry"><b>小提醒：</b>「動物福利蛋」不等於「有機蛋」。動福蛋看的是母雞住得好不好；有機蛋還要吃有機飼料、通過有機驗證。</p>
-    <p class="kid">小補充：「蛋的營養都差不多，差別在雞媽媽住的是小房間、大房間、大客廳，還是有院子的房子。」</p>
-  </section>
+    <p>「動物福利蛋」不等於「有機蛋」。動福蛋看的是母雞的飼養環境；有機蛋還要吃有機飼料、通過有機驗證。動物福利蛋的認證標準請以各認證單位公告為準。</p>
+  </details>
 
   <section aria-labelledby="more">
     <p class="eyebrow">繼續探險</p>
     <h2 id="more">下一站去哪裡？</h2>
     <div class="next">
-      <a class="star" href="washed-eggs.html"><b>洗選蛋</b><span>看懂蛋殼上的噴印。</span></a>
-      <a href="buy-eggs.html"><b>哪裡買雞蛋</b><span>洗選蛋、動福蛋、有機蛋，還有鴨蛋和鵪鶉蛋。</span></a>
+      <a class="star" href="washed-eggs.html"><b>洗選蛋</b><span>雞蛋出門前，要先洗澡、蓋印章！</span></a>
+      <a href="buy-eggs.html"><b>哪裡買雞蛋</b><span>超市、市場，還有鴨蛋和鵪鶉蛋。</span></a>
       <a href="taiwan-data.html"><b>台灣養雞數據</b><span>台灣一年生多少蛋？</span></a>
     </div>
   </section>
-
-  <footer class="site-foot">
-    <p>給大人：營養比較是一般性的整理，不同牧場和飼料差異很大。動物福利蛋的認證標準請以各認證單位公告為準。</p>
-  </footer>
 </main>
+
+<script src="assets/quiz.js"></script>
+<script>
+renderQuiz(document.getElementById("quizBox"), document.getElementById("score"), [
+  ["蛋殼上印 C，表示雞媽媽住在小房間。", true, "是真的！C 是很擠的小籠子。"],
+  ["蛋殼上印 F，表示雞媽媽可以到院子玩。", true, "是真的！F 的雞媽媽可以到外面曬太陽。"],
+  ["住在院子的雞媽媽，生的蛋一定比較營養。", false, "是假的！營養差不多，雞媽媽吃什麼比較重要。"]
+]);
+</script>
 </body>
 </html>
