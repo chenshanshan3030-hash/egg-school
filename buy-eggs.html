@@ -17,6 +17,9 @@
 td.phone { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .type-table td:first-child { white-space: nowrap; font-weight: 700; }
 .type-table td:nth-child(3) { white-space: nowrap; }
+.photo { width: 100%; aspect-ratio: 4 / 3; max-width: 100%; height: auto; object-fit: cover; border-radius: 14px; display: block; background: var(--sky-soft); }
+.credits { margin: 0; padding-left: 1.2em; font-size: 0.85rem; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
+.credits a { color: var(--muted); }
 .where-tag { display: inline-block; background: var(--yolk-soft); border-radius: 999px; padding: 2px 12px; font-size: 0.88rem; font-weight: 700; color: var(--ink); }
 </style>
 </head>
@@ -74,43 +77,54 @@ td.phone { white-space: nowrap; font-variant-numeric: tabular-nums; }
     <p class="lede">除了雞蛋，我們還會吃這些蛋。你吃過幾種呢？</p>
     <div class="grid-3">
       <div class="pic-card">
-        <img class="pic" src="assets/img/duck.svg" alt="鴨子">
+        <img class="photo" src="assets/photos/duck-eggs.jpg" alt="一堆淡綠色的鴨蛋" width="640" height="480" loading="lazy">
         <b>鴨蛋</b>
         <p>鴨媽媽生的蛋，比雞蛋大，蛋黃也比較大。常被做成鹹蛋和皮蛋。</p>
         <span class="where-tag">市場、超市</span>
       </div>
       <div class="pic-card">
-        <img class="pic" src="assets/img/quail-eggs.svg" alt="有斑點的鵪鶉蛋">
+        <img class="photo" src="assets/photos/quail-eggs.jpg" alt="盒子裡有咖啡色斑點的鵪鶉蛋" width="640" height="480" loading="lazy">
         <b>鵪鶉蛋</b>
         <p>小小一顆，蛋殼有咖啡色的點點。常常煮熟放在滷味或關東煮裡。</p>
         <span class="where-tag">市場、超市</span>
       </div>
       <div class="pic-card">
-        <img class="pic" src="assets/img/salted-egg.svg" alt="切開的鹹蛋">
+        <img class="photo" src="assets/photos/salted-egg.jpg" alt="一顆顆橘色、油亮的鹹蛋黃" width="640" height="480" loading="lazy">
         <b>鹹蛋</b>
         <p>用鹽醃過的鴨蛋，蛋黃橘橘的、油油的，吃起來鹹鹹的。</p>
         <span class="where-tag">市場、超市</span>
       </div>
       <div class="pic-card">
-        <img class="pic" src="assets/img/pidan.svg" alt="切開的皮蛋">
+        <img class="photo" src="assets/photos/pidan.jpg" alt="切開的皮蛋，蛋白是透明的咖啡色" width="640" height="480" loading="lazy">
         <b>皮蛋</b>
         <p>蛋白變成咖啡色、透明的，像果凍一樣！常拌豆腐一起吃。</p>
         <span class="where-tag">市場、超市</span>
       </div>
       <div class="pic-card">
-        <img class="pic" src="assets/img/tea-egg.svg" alt="碗裡的茶葉蛋">
+        <img class="photo" src="assets/photos/tea-egg.jpg" alt="碗裡有裂紋花紋的茶葉蛋" width="640" height="480" loading="lazy">
         <b>茶葉蛋</b>
         <p>用茶葉和醬油煮的蛋，蛋殼上有好看的裂紋花紋。</p>
         <span class="where-tag">便利商店</span>
       </div>
       <div class="pic-card">
-        <img class="pic" src="assets/img/iron-egg.svg" alt="碗裡黑黑的鐵蛋">
+        <img class="photo" src="assets/photos/iron-egg.jpg" alt="黑黑的鐵蛋，旁邊是一顆白色的水煮蛋" width="640" height="480" loading="lazy">
         <b>鐵蛋</b>
         <p>滷了又吹乾、滷了又吹乾，變得黑黑的、QQ 的。是淡水有名的點心。</p>
         <span class="where-tag">超市、伴手禮店</span>
       </div>
     </div>
     <p class="note-yolk">買包裝好的蛋，請大人看看盒子上有沒有寫<b>日期</b>和<b>做的工廠</b>，沒有寫的不要買喔。</p>
+    <div>
+      <p class="note">照片來源（Wikimedia Commons，已縮小尺寸）：</p>
+      <ul class="credits">
+        <li>鴨蛋：<a href="https://commons.wikimedia.org/wiki/File:Duck_Eggs_Green_Background.png">Duck Eggs Green Background</a>，Whitlox，<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></li>
+        <li>鵪鶉蛋：<a href="https://commons.wikimedia.org/wiki/File:Quail_eggs,_Rostov-on-Don,_Russia.jpg">Quail eggs, Rostov-on-Don, Russia</a>，Vyacheslav Argenberg，<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
+        <li>鹹蛋：<a href="https://commons.wikimedia.org/wiki/File:Salted_duck_egg_yolk.jpg">Salted duck egg yolk</a>，Fumikas Sagisavas，<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></li>
+        <li>皮蛋：<a href="https://commons.wikimedia.org/wiki/File:Century_egg.jpg">Century egg</a>，Laughlin Elkind，<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a></li>
+        <li>茶葉蛋：<a href="https://commons.wikimedia.org/wiki/File:Tea_eggs_1.jpg">Tea eggs 1</a>，Daniela Eftimova，<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
+        <li>鐵蛋：<a href="https://commons.wikimedia.org/wiki/File:Iron_Eggs_clone_compared_to_a_5_minutes_coocked_and_peeled_chicken_egg_IMG_0263.jpg">Iron Eggs clone compared to a 5 minutes cooked and peeled chicken egg</a>，Hans Haase，<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
+      </ul>
+    </div>
   </section>
 
   <details class="grownup" id="grownup">
