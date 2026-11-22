@@ -8,7 +8,8 @@
 | `washed-eggs.html` | 洗選蛋：洗選步驟、蛋殼噴印字母（O/F/B/E/C）、和散裝蛋比較、在家保存 |
 | `farming.html` | 飼養方式：五種飼養方式的營養、動物福利、食品安全比較 |
 | `taiwan-data.html` | 台灣養雞數據：農業部 114 年畜牧生產統計 |
-| `organic.html` | 哪裡買有機蛋：有機牧場與台中市店家 |
+| `buy-eggs.html` | 哪裡買雞蛋：四種雞蛋去哪買、全聯動福蛋、有機蛋牧場、台中市店家、鴨蛋鵪鶉蛋等其他的蛋 |
+| `organic.html` | 舊網址，自動轉到 `buy-eggs.html` |
 
 純 HTML、CSS、JavaScript，不需要建置。共用樣式在 `assets/style.css`，小測驗在 `assets/quiz.js`。
 
