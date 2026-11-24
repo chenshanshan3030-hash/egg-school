@@ -10,20 +10,50 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Iansui&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="assets/style.css?v=2">
 <style>
-.homes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+/* Letters are the star of this page: big yolk badges, a clickable eggshell, and one card per letter. */
+.homes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
 .home {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
-  padding: 14px 10px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; min-width: 0;
+  background: var(--surface); border: 2px solid var(--line); border-radius: 20px;
+  padding: 16px 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; min-width: 0;
+  font: inherit; color: inherit; cursor: pointer;
 }
-.home svg { width: 100%; max-width: 110px; height: auto; }
+.home:hover { border-color: var(--yolk); }
+.home[aria-pressed="true"] { border-color: var(--yolk); background: var(--yolk-soft); }
+.home:focus-visible { outline: 3px solid var(--yolk); outline-offset: 2px; }
+.home svg { width: 100%; max-width: 120px; height: auto; }
 .home b { font-family: var(--display); font-weight: 400; font-size: 1.2rem; }
 .home span.say { color: var(--muted); font-size: 0.9rem; }
+.big-letter {
+  display: grid; place-items: center;
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--yolk); color: #1d2742;
+  font-family: var(--body); font-weight: 700; font-size: 2.6rem; line-height: 1;
+  box-shadow: 0 4px 0 var(--yolk-deep);
+}
 .room { fill: var(--sky-soft); stroke: var(--muted); stroke-width: 2; }
-.bars-cage { stroke: var(--muted); stroke-width: 2; }
-.hen { fill: #f4e3c3; stroke: #b98f5e; stroke-width: 1.5; }
-.comb { fill: #d24d48; }
+.bars-cage { stroke: var(--muted); stroke-width: 2.5; }
 .grass { fill: var(--leaf); }
 .sun { fill: var(--yolk); }
+
+.decoder { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: center; }
+.decoder > svg { width: 100%; max-width: 280px; justify-self: center; }
+.shell-fill { fill: var(--shell); stroke: var(--shell-line); stroke-width: 2.5; }
+.ink-print { fill: #2b3a67; font-family: var(--body); font-weight: 700; }
+.ring { fill: none; stroke: var(--berry); stroke-width: 4; }
+.letters { display: flex; gap: 10px; flex-wrap: wrap; }
+.letters .btn {
+  width: 64px; height: 64px; padding: 0; border-radius: 50%;
+  font-size: 2rem; line-height: 1;
+}
+.meaning { display: grid; grid-template-columns: 130px 1fr; gap: 14px; align-items: center; min-height: 8.5em; }
+.meaning svg { width: 100%; height: auto; }
+.meaning b { font-family: var(--display); font-weight: 400; font-size: 1.8rem; }
+@media (max-width: 640px) {
+  .decoder { grid-template-columns: 1fr; }
+  .decoder > svg { max-width: 220px; }
+  .meaning { grid-template-columns: 1fr; text-align: center; }
+  .meaning svg { max-width: 150px; justify-self: center; }
+}
 .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .verdict { font-family: var(--display); font-size: 1.5rem; color: var(--yolk-deep); }
 .recs { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 8px; }
@@ -42,7 +72,6 @@ details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-c
     <ul>
       <li><a href="index.html">從蛋到小雞</a></li>
       <li><a href="farming.html" aria-current="page">飼養方式</a></li>
-      <li><a href="washed-eggs.html">洗選蛋</a></li>
       <li><a href="taiwan-data.html">台灣養雞數據</a></li>
       <li><a href="buy-eggs.html">哪裡買雞蛋</a></li>
     </ul>
@@ -55,35 +84,86 @@ details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-c
     <div class="hero-text">
       <p class="eyebrow">雞媽媽的家</p>
       <h1>雞媽媽住在哪裡？</h1>
-      <p class="answer">每個雞媽媽的家都不一樣</p>
-      <p class="lede">有的雞媽媽住在小小的籠子裡，有的可以在大房子裡走來走去，有的還可以到院子曬太陽。蛋殼上印的字母，會告訴你雞媽媽住在哪一種家。</p>
+      <p class="answer">看蛋殼上的字母就知道！</p>
+      <p class="lede">有的雞媽媽住在小小的籠子裡，有的可以在大房子裡走來走去，有的還可以到院子曬太陽。蛋殼上印的<b>字母</b>，會告訴你雞媽媽住在哪一種家。</p>
     </div>
     <img class="pic-lg" src="assets/img/farm.svg" alt="紅色的雞舍和草地上的雞">
   </header>
 
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="hen" viewBox="0 0 40 34">
+      <path d="M30 12 q8 -7 8 4 q-1 6 -7 7" fill="#f4e3c3" stroke="#b98f5e" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="M19 27 v5 m-2 0 h4 M26 27 v5 m-2 0 h4" stroke="#f0a02e" stroke-width="1.8" stroke-linecap="round"/>
+      <ellipse cx="22" cy="19" rx="13" ry="9.5" fill="#f4e3c3" stroke="#b98f5e" stroke-width="1.5"/>
+      <path d="M17 19 q6 6 12 0" fill="none" stroke="#c9a77c" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="11" cy="10" r="7" fill="#f4e3c3" stroke="#b98f5e" stroke-width="1.5"/>
+      <path d="M7 4.5 q1 -4.5 3 -1 q2 -4.5 3.5 0 q2.5 -2.5 2.5 2 Z" fill="#d24d48"/>
+      <path d="M4.5 9.5 l-4 1.8 l4 2 Z" fill="#f0a02e"/>
+      <path d="M6 14 q-1.5 3.5 2 3.2 q1 -2 -1 -3.4 Z" fill="#d24d48"/>
+      <circle cx="9" cy="9" r="1.4" fill="#2a2118"/>
+    </symbol>
+  </svg>
+
+  <section aria-labelledby="letters-title" id="letters">
+    <p class="eyebrow">重點來了</p>
+    <h2 id="letters-title">蛋殼上的字母，就是雞媽媽的家</h2>
+    <p class="lede">很多雞蛋的蛋殼上會印兩行字。第二行最後面的<b>字母</b>，告訴你這顆蛋的雞媽媽住在哪裡。點點看每個字母！</p>
+    <div class="card decoder">
+      <svg viewBox="0 0 280 230" role="img" aria-label="蛋殼印字示意圖：第二行最後面的字母，圈起來的就是重點">
+        <path class="shell-fill" d="M140 222 C 82 222 50 168 50 118 C 50 56 90 10 140 10 C 190 10 230 56 230 118 C 230 168 198 222 140 222 Z"/>
+        <text class="ink-print" x="140" y="104" text-anchor="middle" font-size="17">（農場編號）</text>
+        <text class="ink-print" x="116" y="142" text-anchor="middle" font-size="17">（日期）</text>
+        <circle class="ring" cx="190" cy="133" r="22"/>
+        <text class="ink-print" id="codeLetter" x="190" y="144" text-anchor="middle" font-size="30">O</text>
+      </svg>
+      <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+        <div class="letters" role="group" aria-label="選一個字母">
+          <button class="btn" type="button" data-k="O" aria-pressed="true">O</button>
+          <button class="btn" type="button" data-k="F" aria-pressed="false">F</button>
+          <button class="btn" type="button" data-k="B" aria-pressed="false">B</button>
+          <button class="btn" type="button" data-k="E" aria-pressed="false">E</button>
+          <button class="btn" type="button" data-k="C" aria-pressed="false">C</button>
+        </div>
+        <div class="meaning note-sky" aria-live="polite">
+          <div id="mPic"></div>
+          <div>
+            <b id="mName">O：有機的家</b>
+            <p id="mText"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note">圖是畫給小朋友看的樣子，真的蛋殼上印的字會不一樣。</p>
+  </section>
+
   <section aria-labelledby="homes">
-    <h2 id="homes">五種家，五個字母</h2>
+    <h2 id="homes">五個字母，五種家</h2>
     <div class="homes">
-      <div class="home">
-        <svg viewBox="0 0 110 80" aria-hidden="true"><rect class="room" x="20" y="20" width="70" height="50"/><ellipse class="hen" cx="55" cy="52" rx="20" ry="14"/><path class="comb" d="M66 36 q3 -6 6 0 Z"/><path class="bars-cage" d="M32 20 V70 M44 20 V70 M66 20 V70 M78 20 V70"/></svg>
-        <span class="code">C</span><b>小房間</b><span class="say">很擠，不能走來走去。</span>
-      </div>
-      <div class="home">
-        <svg viewBox="0 0 110 80" aria-hidden="true"><rect class="room" x="8" y="14" width="94" height="58"/><path d="M14 40 H50" stroke="var(--shell-line)" stroke-width="4"/><ellipse class="hen" cx="70" cy="56" rx="16" ry="12"/><path class="comb" d="M79 42 q3 -6 6 0 Z"/><path class="bars-cage" d="M24 14 V72 M88 14 V72"/></svg>
-        <span class="code">E</span><b>大一點的房間</b><span class="say">有可以站的棍子，也有生蛋的小窩。</span>
-      </div>
-      <div class="home">
-        <svg viewBox="0 0 110 80" aria-hidden="true"><path class="room" d="M6 74 V30 L55 6 L104 30 V74 Z"/><ellipse class="hen" cx="38" cy="60" rx="14" ry="10"/><ellipse class="hen" cx="74" cy="62" rx="14" ry="10"/></svg>
-        <span class="code">B</span><b>大客廳</b><span class="say">可以走來走去、抓抓地、洗沙澡。</span>
-      </div>
-      <div class="home">
-        <svg viewBox="0 0 110 80" aria-hidden="true"><circle class="sun" cx="92" cy="16" r="10"/><path class="room" d="M4 74 V40 L28 26 L52 40 V74 Z"/><path class="grass" d="M52 74 H108 V68 Q80 62 52 68 Z"/><ellipse class="hen" cx="80" cy="60" rx="14" ry="10"/></svg>
-        <span class="code">F</span><b>有院子的家</b><span class="say">可以到外面曬太陽、吃草和小蟲。</span>
-      </div>
-      <div class="home">
-        <svg viewBox="0 0 110 80" aria-hidden="true"><circle class="sun" cx="92" cy="16" r="10"/><path class="room" d="M4 74 V40 L28 26 L52 40 V74 Z"/><path class="grass" d="M52 74 H108 V68 Q80 62 52 68 Z"/><path d="M62 60 q4 -12 8 0 M90 60 q4 -12 8 0" stroke="var(--leaf)" stroke-width="3" fill="none"/><ellipse class="hen" cx="80" cy="62" rx="12" ry="9"/></svg>
-        <span class="code">O</span><b>有機的家</b><span class="say">有院子，還吃有機的食物。</span>
-      </div>
+      <button class="home" type="button" data-k="C" aria-pressed="false">
+        <span class="big-letter">C</span>
+        <svg viewBox="0 0 110 80" aria-hidden="true"><rect class="room" x="20" y="18" width="70" height="54"/><use href="#hen" x="36" y="36" width="38" height="32"/><path class="bars-cage" d="M32 18 V72 M44 18 V72 M56 18 V72 M68 18 V72 M80 18 V72"/></svg>
+        <b>小房間</b><span class="say">很擠，不能走來走去。</span>
+      </button>
+      <button class="home" type="button" data-k="E" aria-pressed="false">
+        <span class="big-letter">E</span>
+        <svg viewBox="0 0 110 80" aria-hidden="true"><rect class="room" x="8" y="12" width="94" height="60"/><path d="M14 42 H54" stroke="var(--shell-line)" stroke-width="4" stroke-linecap="round"/><use href="#hen" x="16" y="13" width="34" height="29"/><rect x="66" y="52" width="30" height="18" rx="3" fill="#c9a77c" stroke="#8a6a44" stroke-width="2"/><ellipse cx="81" cy="54" rx="5" ry="6" fill="#f7efe2" stroke="#b98f5e" stroke-width="1.5"/><path class="bars-cage" d="M8 12 V72 M102 12 V72"/></svg>
+        <b>大一點的房間</b><span class="say">有可以站的棍子，也有生蛋的小窩。</span>
+      </button>
+      <button class="home" type="button" data-k="B" aria-pressed="false">
+        <span class="big-letter">B</span>
+        <svg viewBox="0 0 110 80" aria-hidden="true"><path class="room" d="M6 74 V30 L55 6 L104 30 V74 Z"/><use href="#hen" x="14" y="44" width="34" height="29"/><use href="#hen" x="56" y="46" width="32" height="27"/></svg>
+        <b>大客廳</b><span class="say">可以走來走去、抓抓地、洗沙澡。</span>
+      </button>
+      <button class="home" type="button" data-k="F" aria-pressed="false">
+        <span class="big-letter">F</span>
+        <svg viewBox="0 0 110 80" aria-hidden="true"><circle class="sun" cx="94" cy="14" r="10"/><path class="room" d="M4 74 V40 L26 26 L48 40 V74 Z"/><path class="grass" d="M48 74 H108 V68 Q78 62 48 68 Z"/><use href="#hen" x="60" y="38" width="38" height="32"/></svg>
+        <b>有院子的家</b><span class="say">可以到外面曬太陽、吃草和小蟲。</span>
+      </button>
+      <button class="home" type="button" data-k="O" aria-pressed="true">
+        <span class="big-letter">O</span>
+        <svg viewBox="0 0 110 80" aria-hidden="true"><circle class="sun" cx="94" cy="14" r="10"/><path class="room" d="M4 74 V40 L26 26 L48 40 V74 Z"/><path class="grass" d="M48 74 H108 V68 Q78 62 48 68 Z"/><path d="M54 66 q4 -12 8 0 M98 66 q4 -12 8 0" stroke="var(--leaf)" stroke-width="3" fill="none"/><use href="#hen" x="62" y="40" width="36" height="30"/></svg>
+        <b>有機的家</b><span class="say">有院子，還吃有機的食物。</span>
+      </button>
     </div>
   </section>
 
@@ -122,6 +202,8 @@ details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-c
 
   <details class="grownup">
     <summary>給爸爸媽媽看（比較詳細的說明）</summary>
+    <h3>蛋殼噴印</h3>
+    <p>2026 年 7 月 1 日起，洗選業者生產的洗選蛋都要逐顆噴印兩行字並登錄溯源資訊，違者最高罰新台幣 3 萬元。第一行是溯源編碼，可查到牧場和洗選廠；第二行是包裝日期，加上一個代表飼養方式的字母。傳統市場的散裝蛋通常沒有逐顆噴印。（資料來源：中央社 2026 年 9 月 13 日報導）</p>
     <div class="table-wrap">
       <table>
         <thead><tr><th>代碼</th><th>飼養方式</th><th>母雞過得怎樣</th><th>價格</th></tr></thead>
@@ -140,7 +222,7 @@ details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-c
     <p>籠飼的雞和糞便分開，蛋殼較乾淨，也較少接觸野鳥。放牧的雞會接觸土壤和野鳥，要注意禽流感、寄生蟲和土壤污染；台灣曾發生放牧雞場的蛋戴奧辛超標，原因與雞場土壤環境有關。對安全影響更大的是：有沒有洗選、有沒有冷藏、有沒有過期。</p>
     <h3>怎麼選</h3>
     <ol class="recs">
-      <li>先顧安全：不管哪種飼養方式，都選<a href="washed-eggs.html">有噴印的洗選蛋</a>，在冷藏櫃拿，看清楚日期，買回家馬上冷藏。</li>
+      <li>先顧安全：不管哪種飼養方式，都選有噴印的洗選蛋，在冷藏櫃拿，看清楚日期，買回家馬上冷藏。</li>
       <li>預算有限：一般洗選蛋（C）就有基本的安全把關。</li>
       <li>想對母雞好一點又不想太貴：平飼（B）是很好的折衷，全聯的「動物福利蛋」專區就有。</li>
       <li>很在意動物福利或有機飼料：選放牧（F）或有機（O），可參考<a href="buy-eggs.html">哪裡買雞蛋</a>。</li>
@@ -152,8 +234,8 @@ details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-c
     <p class="eyebrow">繼續探險</p>
     <h2 id="more">下一站去哪裡？</h2>
     <div class="next">
-      <a class="star" href="washed-eggs.html"><b>洗選蛋</b><span>雞蛋出門前，要先洗澡、蓋印章！</span></a>
-      <a href="buy-eggs.html"><b>哪裡買雞蛋</b><span>超市、市場，還有鴨蛋和鵪鶉蛋。</span></a>
+      <a class="star" href="buy-eggs.html"><b>哪裡買雞蛋</b><span>去超市找找看，蛋殼上印了哪個字母？</span></a>
+      <a href="index.html"><b>從蛋到小雞</b><span>21 天，從一個小點變成小雞。</span></a>
       <a href="taiwan-data.html"><b>台灣養雞數據</b><span>台灣一年生多少蛋？</span></a>
     </div>
   </section>
@@ -161,11 +243,44 @@ details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-c
 
 <script src="assets/quiz.js?v=2"></script>
 <script>
-renderQuiz(document.getElementById("quizBox"), document.getElementById("score"), [
-  ["蛋殼上印 C，表示雞媽媽住在小房間。", true, "是真的！C 是很擠的小籠子。"],
-  ["蛋殼上印 F，表示雞媽媽可以到院子玩。", true, "是真的！F 的雞媽媽可以到外面曬太陽。"],
-  ["住在院子的雞媽媽，生的蛋一定比較營養。", false, "是假的！營養差不多，雞媽媽吃什麼比較重要。"]
-]);
+(function () {
+  var M = {
+    O: ["有機的家", "雞媽媽可以到院子玩，還吃有機的食物。"],
+    F: ["有院子的家", "雞媽媽可以到外面曬太陽、吃草和小蟲。"],
+    B: ["大客廳", "雞媽媽不住籠子，可以在大房子裡走來走去、洗沙澡。"],
+    E: ["大一點的房間", "還是住在籠子裡，但是比較大，有可以站的棍子和生蛋的小窩。"],
+    C: ["小房間", "住在小小的籠子裡，很擠，不能走來走去。"]
+  };
+  var btns = document.querySelectorAll(".letters .btn");
+  var cards = document.querySelectorAll(".home");
+  var name = document.getElementById("mName"), text = document.getElementById("mText");
+  var letter = document.getElementById("codeLetter"), pic = document.getElementById("mPic");
+  function pick(k) {
+    btns.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.k === k ? "true" : "false"); });
+    cards.forEach(function (c) { c.setAttribute("aria-pressed", c.dataset.k === k ? "true" : "false"); });
+    name.textContent = k + "：" + M[k][0];
+    text.textContent = M[k][1];
+    letter.textContent = k;
+    var card = document.querySelector('.home[data-k="' + k + '"] svg');
+    pic.innerHTML = card ? card.outerHTML : "";
+  }
+  btns.forEach(function (b) { b.addEventListener("click", function () { pick(b.dataset.k); }); });
+  cards.forEach(function (c) {
+    c.addEventListener("click", function () {
+      pick(c.dataset.k);
+      document.getElementById("letters").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+  pick("O");
+
+  renderQuiz(document.getElementById("quizBox"), document.getElementById("score"), [
+    ["蛋殼上印 C，表示雞媽媽住在小房間。", true, "是真的！C 是很擠的小籠子。"],
+    ["蛋殼上印 F，表示雞媽媽可以到院子玩。", true, "是真的！F 的雞媽媽可以到外面曬太陽。"],
+    ["蛋殼上印 B，表示雞媽媽住在小籠子裡。", false, "是假的！B 是大客廳，雞媽媽可以走來走去。"],
+    ["蛋殼上印 O，表示雞媽媽吃有機的食物。", true, "是真的！O 是有機的家。"],
+    ["住在院子的雞媽媽，生的蛋一定比較營養。", false, "是假的！營養差不多，雞媽媽吃什麼比較重要。"]
+  ]);
+})();
 </script>
 </body>
 </html>
