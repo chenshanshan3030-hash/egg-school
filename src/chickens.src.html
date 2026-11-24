@@ -11,16 +11,38 @@
 <link rel="stylesheet" href="assets/style.css?v=4">
 <!-- Generated from src/chickens.src.html by tools/build-zhuyin.js. Edit the source, not this file. -->
 <style>
-.parts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-.parts li { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: start; }
-.num {
-  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
-  background: var(--berry); color: #fff; font-weight: 700; font-size: 1rem; margin-top: 18px;
+/* Body explorer: tap a part of the hen (or a chip) to light it up and read about it. */
+.body-grid { display: grid; grid-template-columns: minmax(0, 360px) 1fr; gap: 24px; align-items: center; }
+.hen-map { width: 100%; max-width: 360px; justify-self: center; overflow: visible; }
+.part { cursor: pointer; outline: none; transition: opacity 0.2s, filter 0.2s; }
+.part .hit { fill: transparent; }
+.part:focus-visible { filter: drop-shadow(0 0 3px #2f8f5f) drop-shadow(0 0 3px #2f8f5f); }
+.hen-map.picked .part { opacity: 0.4; }
+.hen-map.picked .part.on { opacity: 1; filter: drop-shadow(0 0 2px #f4b52c) drop-shadow(0 0 5px #f4b52c); }
+.dots circle {
+  fill: #f4b52c; stroke: #ffffff; stroke-width: 2; pointer-events: none;
+  transform-box: fill-box; transform-origin: center; animation: pulse 1.6s ease-in-out infinite;
 }
-.body-grid { display: grid; grid-template-columns: 300px 1fr; gap: 24px; align-items: center; }
-.body-grid svg { width: 100%; max-width: 300px; justify-self: center; }
-.badge circle { fill: var(--berry); }
-.badge text { fill: #fff; font: 700 15px "Noto Sans TC", sans-serif; }
+.hen-map.picked .dots { display: none; }
+@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.95; } 50% { transform: scale(1.5); opacity: 0.45; } }
+.explore { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.part-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font: inherit; font-weight: 700; cursor: pointer;
+  border: 2px solid var(--line); border-radius: 999px;
+  background: var(--surface); color: var(--ink); padding: 4px 14px;
+}
+.chip:hover { border-color: var(--yolk); }
+.chip[aria-pressed="true"] { border-color: var(--yolk); background: var(--yolk-soft); }
+.chip:focus-visible { outline: 3px solid var(--yolk); outline-offset: 2px; }
+.part-info { background: var(--sky-soft); border-radius: 16px; padding: 16px 20px; min-height: 9em; }
+.part-info > div { display: flex; flex-direction: column; gap: 6px; }
+.part-info h3 { font-size: 1.5rem; }
+.part-info .fun { margin-top: 6px; padding-top: 10px; border-top: 2px dashed var(--line); }
+.talk-grid .play { align-self: center; min-width: 9em; }
+.play[aria-pressed="true"] { background: var(--berry); border-color: var(--berry); color: #ffffff; }
+.no-sound { font-size: 0.85rem; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .dots circle { animation: none; } .part { transition: none; } }
 .scene { width: 100%; max-width: 260px; height: auto; border-radius: 16px; }
 .bubble-text { font: 700 16px "Noto Sans TC", sans-serif; fill: #1d2742; }
 .dino-row { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 14px; }
@@ -30,7 +52,7 @@
 .tips svg { width: 84px; height: 84px; }
 @media (max-width: 720px) {
   .body-grid { grid-template-columns: 1fr; }
-  .body-grid svg { max-width: 240px; }
+  .hen-map { max-width: 280px; }
   .dino-row, .tips { grid-template-columns: 1fr; }
 }
 </style>
@@ -62,22 +84,81 @@
   <section aria-labelledby="body">
     <p class="eyebrow">⟪第1個祕密|ㄉㄧˋ ˙ㄍㄜ ㄇㄧˋ ㄇㄧˋ⟫</p>
     <h2 id="body">⟪雞的身體|ㄐㄧ ˙ㄉㄜ ㄕㄣ ㄊㄧˇ⟫</h2>
-    <div class="card body-grid">
-      <svg viewBox="0 0 170 170" role="img" aria-label="雞的身體：1 雞冠、2 肉垂、3 嘴巴、4 爪子、5 羽毛">
-        <image href="assets/img/hen.svg" x="5" y="5" width="160" height="160"/>
-        <g class="badge"><circle cx="72" cy="28" r="11"/><text x="72" y="33" text-anchor="middle">1</text></g>
-        <g class="badge"><circle cx="30" cy="96" r="11"/><text x="30" y="101" text-anchor="middle">2</text></g>
-        <g class="badge"><circle cx="18" cy="52" r="11"/><text x="18" y="57" text-anchor="middle">3</text></g>
-        <g class="badge"><circle cx="118" cy="150" r="11"/><text x="118" y="155" text-anchor="middle">4</text></g>
-        <g class="badge"><circle cx="132" cy="80" r="11"/><text x="132" y="85" text-anchor="middle">5</text></g>
+    <p class="lede">⟪點點看雞的身體，看看每個地方叫什麼！⟫</p>
+    <div class="card body-grid" id="bodyExplorer">
+      <svg class="hen-map" viewBox="0 0 160 160" role="group" aria-label="雞的身體，可以點選部位">
+        <circle cx="80" cy="80" r="78" fill="#fdf0cf"/>
+        <g class="part" data-part="feather" tabindex="0" role="button" aria-label="羽毛">
+          <path d="M116 74 q24 -14 22 16 q-2 16 -18 18" fill="#e9d2a8" stroke="#8a6a44" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M120 78 q12 -2 12 12" fill="none" stroke="#c9a77c" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="84" cy="98" rx="40" ry="30" fill="#f7ead2" stroke="#8a6a44" stroke-width="3"/>
+          <path d="M72 96 q16 16 36 2" fill="none" stroke="#c9a77c" stroke-width="3" stroke-linecap="round"/>
+          <circle class="hit" cx="100" cy="98" r="30"/>
+        </g>
+        <g class="part" data-part="claw" tabindex="0" role="button" aria-label="爪子">
+          <path d="M76 128 v14 m-7 0 h14 M96 128 v14 m-7 0 h14" stroke="#f0a02e" stroke-width="4" stroke-linecap="round"/>
+          <rect class="hit" x="62" y="124" width="46" height="26" rx="8"/>
+        </g>
+        <circle cx="58" cy="62" r="21" fill="#f7ead2" stroke="#8a6a44" stroke-width="3"/>
+        <circle cx="51" cy="58" r="4" fill="#2a2118"/>
+        <circle cx="52.5" cy="56.5" r="1.3" fill="#fff"/>
+        <circle cx="62" cy="68" r="4" fill="#f2a29a" opacity="0.8"/>
+        <g class="part" data-part="comb" tabindex="0" role="button" aria-label="雞冠">
+          <path d="M47 44 q3 -11 9 -3 q4 -11 9 -2 q6 -8 8 4 Z" fill="#e2483d"/>
+          <circle class="hit" cx="59" cy="40" r="13"/>
+        </g>
+        <g class="part" data-part="beak" tabindex="0" role="button" aria-label="嘴巴">
+          <path d="M38 61 l-14 5 l14 6 Z" fill="#f0a02e" stroke="#c9771a" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle class="hit" cx="30" cy="66" r="11"/>
+        </g>
+        <g class="part" data-part="wattle" tabindex="0" role="button" aria-label="肉垂">
+          <path d="M41 73 q-3 12 6 10 q3 -7 -2 -11 Z" fill="#e2483d"/>
+          <circle class="hit" cx="44" cy="80" r="10"/>
+        </g>
+        <g class="dots" aria-hidden="true">
+          <circle cx="59" cy="38" r="5"/><circle cx="26" cy="66" r="5"/><circle cx="44" cy="80" r="5"/><circle cx="86" cy="146" r="5"/><circle cx="118" cy="104" r="5"/>
+        </g>
       </svg>
-      <ol class="parts">
-        <li><span class="num">1</span><p>⟪雞冠：頭上紅紅的，像小帽子。|ㄐㄧ ㄍㄨㄢ ㄊㄡˊ ㄕㄤˋ ㄏㄨㄥˊ ㄏㄨㄥˊ ˙ㄉㄜ ㄒㄧㄤˋ ㄒㄧㄠˇ ㄇㄠˋ ˙ㄗ⟫</p></li>
-        <li><span class="num">2</span><p>⟪肉垂：下巴下面也紅紅的，會晃來晃去。|ㄖㄡˋ ㄔㄨㄟˊ ㄒㄧㄚˋ ˙ㄅㄚ ㄒㄧㄚˋ ㄇㄧㄢˋ ㄧㄝˇ ㄏㄨㄥˊ ㄏㄨㄥˊ ˙ㄉㄜ ㄏㄨㄟˋ ㄏㄨㄤˋ ㄌㄞˊ ㄏㄨㄤˋ ㄑㄩˋ⟫</p></li>
-        <li><span class="num">3</span><p>⟪嘴巴：尖尖硬硬的，用來啄東西吃。|ㄗㄨㄟˇ ˙ㄅㄚ ㄐㄧㄢ ㄐㄧㄢ ㄧㄥˋ ㄧㄥˋ ˙ㄉㄜ ㄩㄥˋ ㄌㄞˊ ㄓㄨㄛˊ ㄉㄨㄥ ˙ㄒㄧ ㄔ⟫</p></li>
-        <li><span class="num">4</span><p>⟪爪子：可以抓地，把小蟲挖出來。|ㄓㄨㄚˇ ˙ㄗ ㄎㄜˇ ㄧˇ ㄓㄨㄚ ㄉㄧˋ ㄅㄚˇ ㄒㄧㄠˇ ㄔㄨㄥˊ ㄨㄚ ㄔㄨ ㄌㄞˊ⟫</p></li>
-        <li><span class="num">5</span><p>⟪羽毛：讓身體暖暖的，也保護身體。|ㄩˇ ㄇㄠˊ ㄖㄤˋ ㄕㄣ ㄊㄧˇ ㄋㄨㄢˇ ㄋㄨㄢˇ ˙ㄉㄜ ㄧㄝˇ ㄅㄠˇ ㄏㄨˋ ㄕㄣ ㄊㄧˇ⟫</p></li>
-      </ol>
+      <div class="explore">
+        <div class="part-chips" role="group" aria-label="選一個部位">
+          <button class="chip" type="button" data-part="comb">⟪雞冠⟫</button>
+          <button class="chip" type="button" data-part="wattle">⟪肉垂⟫</button>
+          <button class="chip" type="button" data-part="beak">⟪嘴巴⟫</button>
+          <button class="chip" type="button" data-part="claw">⟪爪子⟫</button>
+          <button class="chip" type="button" data-part="feather">⟪羽毛⟫</button>
+        </div>
+        <div class="part-info" aria-live="polite">
+          <div data-info="start">
+            <h3>⟪點雞的身體看看！⟫</h3>
+            <p>⟪會發亮的地方都可以點喔。⟫</p>
+          </div>
+          <div data-info="comb" hidden>
+            <h3>⟪雞冠|ㄐㄧ ㄍㄨㄢ⟫</h3>
+            <p>⟪頭上紅紅的，像小帽子。|ㄊㄡˊ ㄕㄤˋ ㄏㄨㄥˊ ㄏㄨㄥˊ ˙ㄉㄜ ㄒㄧㄤˋ ㄒㄧㄠˇ ㄇㄠˋ ˙ㄗ⟫</p>
+            <p class="fun">⟪公雞的雞冠，通常比母雞的大。⟫</p>
+          </div>
+          <div data-info="wattle" hidden>
+            <h3>⟪肉垂|ㄖㄡˋ ㄔㄨㄟˊ⟫</h3>
+            <p>⟪下巴下面也紅紅的，會晃來晃去。|ㄒㄧㄚˋ ˙ㄅㄚ ㄒㄧㄚˋ ㄇㄧㄢˋ ㄧㄝˇ ㄏㄨㄥˊ ㄏㄨㄥˊ ˙ㄉㄜ ㄏㄨㄟˋ ㄏㄨㄤˋ ㄌㄞˊ ㄏㄨㄤˋ ㄑㄩˋ⟫</p>
+            <p class="fun">⟪天氣熱的時候，雞冠和肉垂可以幫雞散熱。⟫</p>
+          </div>
+          <div data-info="beak" hidden>
+            <h3>⟪嘴巴|ㄗㄨㄟˇ ˙ㄅㄚ⟫</h3>
+            <p>⟪尖尖硬硬的，用來啄東西吃。|ㄐㄧㄢ ㄐㄧㄢ ㄧㄥˋ ㄧㄥˋ ˙ㄉㄜ ㄩㄥˋ ㄌㄞˊ ㄓㄨㄛˊ ㄉㄨㄥ ˙ㄒㄧ ㄔ⟫</p>
+            <p class="fun">⟪雞喝水的時候，會把頭抬高，讓水流進喉嚨。⟫</p>
+          </div>
+          <div data-info="claw" hidden>
+            <h3>⟪爪子|ㄓㄨㄚˇ ˙ㄗ⟫</h3>
+            <p>⟪可以抓地，把小蟲挖出來。|ㄎㄜˇ ㄧˇ ㄓㄨㄚ ㄉㄧˋ ㄅㄚˇ ㄒㄧㄠˇ ㄔㄨㄥˊ ㄨㄚ ㄔㄨ ㄌㄞˊ⟫</p>
+            <p class="fun">⟪雞的腳有四根腳趾：三根朝前，一根朝後。⟫</p>
+          </div>
+          <div data-info="feather" hidden>
+            <h3>⟪羽毛|ㄩˇ ㄇㄠˊ⟫</h3>
+            <p>⟪讓身體暖暖的，也保護身體。|ㄖㄤˋ ㄕㄣ ㄊㄧˇ ㄋㄨㄢˇ ㄋㄨㄢˇ ˙ㄉㄜ ㄧㄝˇ ㄅㄠˇ ㄏㄨˋ ㄕㄣ ㄊㄧˇ⟫</p>
+            <p class="fun">⟪雞每年會換一次羽毛，叫做「換羽」。⟫</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="card with-pic">
@@ -104,7 +185,7 @@
     <p class="eyebrow">⟪第2個祕密|ㄉㄧˋ ˙ㄍㄜ ㄇㄧˋ ㄇㄧˋ⟫</p>
     <h2 id="talk">⟪雞會說話|ㄐㄧ ㄏㄨㄟˋ ㄕㄨㄛ ㄏㄨㄚˋ⟫</h2>
     <p class="lede">⟪雞會用不同的叫聲，告訴別的雞發生了什麼事。|ㄐㄧ ㄏㄨㄟˋ ㄩㄥˋ ㄅㄨˋ ㄊㄨㄥˊ ˙ㄉㄜ ㄐㄧㄠˋ ㄕㄥ ㄍㄠˋ ㄙㄨˋ ㄅㄧㄝˊ ˙ㄉㄜ ㄐㄧ ㄈㄚ ㄕㄥ ˙ㄌㄜ ㄕㄣˊ ˙ㄇㄜ ㄕˋ⟫</p>
-    <div class="grid-3">
+    <div class="grid-2 talk-grid">
       <div class="pic-card">
         <svg class="scene" viewBox="0 0 260 180" role="img" aria-label="雞媽媽咕咕叫，兩隻小雞跑過來">
           <rect width="260" height="180" rx="16" fill="#fdf0cf"/>
@@ -114,6 +195,7 @@
           <path d="M140 14 h96 a12 12 0 0 1 12 12 v26 a12 12 0 0 1 -12 12 h-74 l-16 16 l2 -16 h-8 a12 12 0 0 1 -12 -12 v-26 a12 12 0 0 1 12 -12 Z" fill="#ffffff" stroke="#c9a77c" stroke-width="2"/>
           <text class="bubble-text" x="188" y="46" text-anchor="middle">咕咕咕</text>
         </svg>
+        <button class="btn primary play" type="button" data-sound="hens-clucking">⟪聽聽看⟫</button>
         <b>⟪咕咕咕，快來吃！|ㄍㄨ ㄍㄨ ㄍㄨ ㄎㄨㄞˋ ㄌㄞˊ ㄔ⟫</b>
         <p>⟪雞媽媽找到好吃的東西，會咕咕叫，叫小雞過來吃。|ㄐㄧ ㄇㄚ ˙ㄇㄚ ㄓㄠˇ ㄉㄠˋ ㄏㄠˇ ㄔ ˙ㄉㄜ ㄉㄨㄥ ˙ㄒㄧ ㄏㄨㄟˋ ㄍㄨ ㄍㄨ ㄐㄧㄠˋ ㄐㄧㄠˋ ㄒㄧㄠˇ ㄐㄧ ㄍㄨㄛˋ ㄌㄞˊ ㄔ⟫</p>
       </div>
@@ -128,6 +210,7 @@
           <path d="M170 96 h62 a10 10 0 0 1 10 10 v22 a10 10 0 0 1 -10 10 h-50 l-14 12 l2 -12 a10 10 0 0 1 -10 -10 v-22 a10 10 0 0 1 10 -10 Z" fill="#ffffff" stroke="#d24d48" stroke-width="2"/>
           <text class="bubble-text" x="201" y="124" text-anchor="middle" fill="#d24d48">小心！</text>
         </svg>
+        <p class="no-sound">⟪這種叫聲還沒有找到錄音。⟫</p>
         <b>⟪小心！老鷹來了！|ㄒㄧㄠˇ ㄒㄧㄣ ㄌㄠˇ ㄧㄥ ㄌㄞˊ ˙ㄌㄜ⟫</b>
         <p>⟪雞看到天上的老鷹，跟看到地上的動物，叫聲不同。|ㄐㄧ ㄎㄢˋ ㄉㄠˋ ㄊㄧㄢ ㄕㄤˋ ˙ㄉㄜ ㄌㄠˇ ㄧㄥ ㄍㄣ ㄎㄢˋ ㄉㄠˋ ㄉㄧˋ ㄕㄤˋ ˙ㄉㄜ ㄉㄨㄥˋ ㄨˋ ㄐㄧㄠˋ ㄕㄥ ㄅㄨˋ ㄊㄨㄥˊ⟫⟪別的雞聽了，就知道要往哪裡躲。|ㄅㄧㄝˊ ˙ㄉㄜ ㄐㄧ ㄊㄧㄥ ˙ㄌㄜ ㄐㄧㄡˋ ㄓ ㄉㄠˋ ㄧㄠˋ ㄨㄤˇ ㄋㄚˇ ㄌㄧˇ ㄉㄨㄛˇ⟫</p>
       </div>
@@ -139,8 +222,24 @@
           <path d="M132 18 h100 a12 12 0 0 1 12 12 v26 a12 12 0 0 1 -12 12 h-76 l-18 14 l4 -14 h-10 a12 12 0 0 1 -12 -12 v-26 a12 12 0 0 1 12 -12 Z" fill="#ffffff" stroke="#c9a77c" stroke-width="2"/>
           <text class="bubble-text" x="182" y="50" text-anchor="middle">喔喔喔～</text>
         </svg>
+        <button class="btn primary play" type="button" data-sound="rooster-crow">⟪聽聽看⟫</button>
         <b>⟪喔喔喔！公雞叫了|ㄛ ㄛ ㄛ ㄍㄨㄥ ㄐㄧ ㄐㄧㄠˋ ˙ㄌㄜ⟫</b>
         <p>⟪公雞會大聲叫。牠們早上會叫，白天也會叫喔！|ㄍㄨㄥ ㄐㄧ ㄏㄨㄟˋ ㄉㄚˋ ㄕㄥ ㄐㄧㄠˋ ㄊㄚ ˙ㄇㄣ ㄗㄠˇ ㄕㄤˋ ㄏㄨㄟˋ ㄐㄧㄠˋ ㄅㄞˊ ㄊㄧㄢ ㄧㄝˇ ㄏㄨㄟˋ ㄐㄧㄠˋ ㄛ⟫</p>
+      </div>
+      <div class="pic-card">
+        <svg class="scene" viewBox="0 0 260 180" role="img" aria-label="雞媽媽生完蛋，大聲咯咯叫">
+          <rect width="260" height="180" rx="16" fill="#e1f3e8"/>
+          <path d="M20 160 q50 -16 100 0 q-6 14 -50 14 q-44 0 -50 -14 Z" fill="#b88a50" stroke="#7a5a30" stroke-width="2.5"/>
+          <image href="assets/img/hen.svg" x="10" y="34" width="124" height="124"/>
+          <ellipse cx="166" cy="146" rx="15" ry="19" fill="#f7efe2" stroke="#b98f5e" stroke-width="2.5"/>
+          <path d="M158 134 q3 -6 8 -7" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+          <path d="M150 128 l-6 -8 M182 128 l6 -8 M166 120 v-10" stroke="#f0a02e" stroke-width="3" stroke-linecap="round"/>
+          <path d="M136 16 h96 a12 12 0 0 1 12 12 v26 a12 12 0 0 1 -12 12 h-74 l-16 16 l2 -16 h-8 a12 12 0 0 1 -12 -12 v-26 a12 12 0 0 1 12 -12 Z" fill="#ffffff" stroke="#c9a77c" stroke-width="2"/>
+          <text class="bubble-text" x="184" y="48" text-anchor="middle">咯咯咯！</text>
+        </svg>
+        <button class="btn primary play" type="button" data-sound="hen-egg-song">⟪聽聽看⟫</button>
+        <b>⟪咯咯咯，我生蛋了！⟫</b>
+        <p>⟪雞媽媽生完蛋，常常會大聲咯咯叫。⟫</p>
       </div>
     </div>
   </section>
@@ -219,8 +318,10 @@
       <li><b>公雞啼叫</b>：多半在天亮前後，受生理時鐘影響，但白天也會因為光線、聲音或其他公雞而啼叫。</li>
       <li><b>恐龍的親戚</b>：鳥類是從獸腳類恐龍演化而來的，現生鳥類常被視為恐龍的後代。許多獸腳類恐龍的化石保留了羽毛痕跡，足跡也常是三趾朝前。頁面上「有些恐龍慢慢變成了鳥」是給小朋友的簡化說法。</li>
       <li><b>衛生</b>：家禽身上可能帶有沙門氏菌，摸過雞或雞蛋後，請帶孩子用肥皂洗手。</li>
+      <li><b>身體的小知識</b>：雞冠和肉垂血管豐富，可以幫助散熱；雞喝水時會仰頭讓水流進喉嚨；雞腳一般有四趾（三前一後，部分品種有五趾）；成雞大多每年換羽一次，換羽期間常會暫停下蛋。</li>
+      <li><b>叫聲錄音</b>：三段錄音來自 Wikimedia Commons，錄音者 alys，公共領域：<a href="https://commons.wikimedia.org/wiki/File:Chickens_demanding_food.ogg">Chickens demanding food</a>、<a href="https://commons.wikimedia.org/wiki/File:Medium_rooster_crowing.ogg">Medium rooster crowing</a>、<a href="https://commons.wikimedia.org/wiki/File:Hen_announcing_shes_lain_an_egg.ogg">Hen announcing she's lain an egg</a>。「咕咕咕」那段是一群雞討食物的叫聲，不是雞媽媽叫小雞的錄音。警戒叫聲目前沒有找到可以使用的錄音。部分 iPhone、iPad 的瀏覽器不能播放 OGG 格式，按鈕會顯示「不能播放」。</li>
     </ul>
-    <p>注音是逐字人工標注的；「一」和「不」的變調容易混淆，這頁的文字盡量避開，方便孩子自己唸。</p>
+    <p>注音由「注音粉圓」字型顯示，讀音依教育部《國語一字多音審訂表》，所以部分輕聲會顯示原調。</p>
   </details>
 
   <section aria-labelledby="more">
@@ -232,5 +333,58 @@
     </div>
   </section>
 </main>
+<script>
+(function () {
+  // Body explorer
+  var map = document.querySelector(".hen-map");
+  var parts = Array.prototype.slice.call(map.querySelectorAll(".part"));
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".chip"));
+  var infos = Array.prototype.slice.call(document.querySelectorAll("[data-info]"));
+  function pick(k) {
+    map.classList.add("picked");
+    parts.forEach(function (p) { p.classList.toggle("on", p.dataset.part === k); });
+    chips.forEach(function (c) { c.setAttribute("aria-pressed", c.dataset.part === k ? "true" : "false"); });
+    infos.forEach(function (i) { i.hidden = i.dataset.info !== k; });
+  }
+  parts.forEach(function (p) {
+    p.addEventListener("click", function () { pick(p.dataset.part); });
+    p.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(p.dataset.part); }
+    });
+  });
+  chips.forEach(function (c) {
+    c.setAttribute("aria-pressed", "false");
+    c.addEventListener("click", function () { pick(c.dataset.part); });
+  });
+
+  // Chicken sounds: one plays at a time; the button turns into a stop button while playing.
+  var PLAY = "⟪聽聽看⟫", STOP = "⟪停下來⟫", CANT = "⟪這個瀏覽器不能播放⟫";
+  var probe = document.createElement("audio");
+  var canOgg = !!(probe.canPlayType && probe.canPlayType('audio/ogg; codecs="vorbis"'));
+  var current = null;
+  function reset(btn) {
+    btn.innerHTML = PLAY;
+    btn.setAttribute("aria-pressed", "false");
+    if (current && current.btn === btn) current = null;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".play"), function (btn) {
+    btn.setAttribute("aria-pressed", "false");
+    if (!canOgg) { btn.disabled = true; btn.innerHTML = CANT; return; }
+    var audio = new Audio("sounds/" + btn.dataset.sound + ".ogg");
+    audio.preload = "none";
+    audio.addEventListener("ended", function () { reset(btn); });
+    btn.addEventListener("click", function () {
+      if (current && current.btn !== btn) { current.audio.pause(); reset(current.btn); }
+      if (!audio.paused) { audio.pause(); reset(btn); return; }
+      audio.currentTime = 0;
+      audio.play().then(function () {
+        btn.innerHTML = STOP;
+        btn.setAttribute("aria-pressed", "true");
+        current = { btn: btn, audio: audio };
+      }).catch(function () { btn.disabled = true; btn.innerHTML = CANT; });
+    });
+  });
+})();
+</script>
 </body>
 </html>

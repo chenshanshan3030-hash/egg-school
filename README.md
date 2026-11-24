@@ -5,7 +5,7 @@
 | 頁面 | 內容 |
 |---|---|
 | `index.html` | 從蛋到小雞：為什麼超市的蛋不會孵出小雞、21 天孵化時間軸、雞蛋剖面圖、小測驗 |
-| `chickens.html` | 雞的祕密（全文注音）：雞的身體、雞沒有牙齒、雞會用叫聲說話、雞是恐龍的親戚。由 `src/chickens.src.html` 產生 |
+| `chickens.html` | 雞的祕密：可以點選部位的雞身體、雞沒有牙齒、雞的叫聲（可播放錄音）、雞是恐龍的親戚 |
 | `farming.html` | 飼養方式：重點是蛋殼上的字母（O/F/B/E/C），可點選的蛋殼和五種雞媽媽的家，加上營養、動物福利比較 |
 | `taiwan-data.html` | 舊網址（台灣養雞數據頁已移除，對小朋友太難），自動轉到 `index.html` |
 | `buy-eggs.html` | 哪裡買雞蛋：四種雞蛋去哪買、全聯動福蛋、有機蛋牧場、台中市店家、鴨蛋鵪鶉蛋等其他的蛋 |
@@ -36,6 +36,18 @@
 
 - `fonts/BpmfHuninn-subset.woff2`：注音粉圓（BpmfHuninn）只保留網站用到的字，SIL Open Font License 1.1，作者 But Ko，基於 justfont 粉圓（Huninn）。授權全文見 `fonts/LICENSE-BpmfHuninn.txt`。
 - `tools/bpmf/`：[bpmfvs 注音IVS字型規格](https://github.com/ButTaiwan/bpmfvs) 的讀音表，Copyright 2020 But Ko，Apache License 2.0（見 `tools/bpmf/NOTICE.txt`、`tools/bpmf/LICENSE-2.0.txt`）。
+
+## 錄音授權
+
+`sounds/` 裡的錄音來自 Wikimedia Commons，錄音者 alys，公共領域：
+
+| 檔案 | 原檔 |
+|---|---|
+| `hens-clucking.ogg` | [Chickens demanding food](https://commons.wikimedia.org/wiki/File:Chickens_demanding_food.ogg) |
+| `rooster-crow.ogg` | [Medium rooster crowing](https://commons.wikimedia.org/wiki/File:Medium_rooster_crowing.ogg) |
+| `hen-egg-song.ogg` | [Hen announcing she's lain an egg](https://commons.wikimedia.org/wiki/File:Hen_announcing_shes_lain_an_egg.ogg) |
+
+OGG 格式；不支援的瀏覽器（部分 iPhone／iPad）按鈕會顯示「這個瀏覽器不能播放」。
 
 ## 照片授權
 
