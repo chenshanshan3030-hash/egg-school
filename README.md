@@ -14,9 +14,18 @@
 
 文字寫給國小低年級的小朋友看；地址、電話、統計表等詳細資料收在每頁的「給爸爸媽媽看」區塊。
 
-純 HTML、CSS、JavaScript。只有加注音的頁面需要產生：改 `src/chickens.src.html` 之後執行 `node tools/build-zhuyin.js src/chickens.src.html chickens.html`。注音寫成 `⟪雞的祕密|ㄐㄧ ˙ㄉㄜ ㄇㄧˋ ㄇㄧˋ⟫`，程式會檢查字數和注音數一致。
+給小朋友看的文字全部加了注音（課本式直排），「給爸爸媽媽看」區塊和店家資料不加。
 
-其他頁面不需要建置。共用樣式在 `assets/style.css`，小測驗在 `assets/quiz.js`，插圖（自己畫的 SVG）在 `assets/img/`。
+## 怎麼修改頁面
+
+`index.html`、`chickens.html`、`farming.html`、`buy-eggs.html` 是**產生出來的檔案，不要直接改**：
+
+1. 改 `src/` 裡對應的 `*.src.html`。
+2. 執行 `node tools/build-zhuyin.js`（加 `--dump` 會另外輸出 `tools/zhuyin-review.txt`，列出每個字的注音方便檢查）。
+
+注音從 `tools/zhuyin-dict.txt` 查，長的詞優先，所以破音字、輕聲和「一」「不」的變調都寫成詞；字典裡沒有的字，程式會停下來列出來。也可以直接寫 `⟪雞的祕密|ㄐㄧ ˙ㄉㄜ ㄇㄧˋ ㄇㄧˋ⟫` 指定注音。JS 字串裡要顯示的文字寫成 `"⟪播放⟫"`，並用 `innerHTML` 放進頁面。
+
+共用樣式（含注音排版）在 `assets/style.css`，小測驗在 `assets/quiz.js`，插圖（自己畫的 SVG）在 `assets/img/`。改了共用檔案要把各頁的 `?v=` 版本號加一。
 
 資料來源：農業部統計處、中央社（2026/9/13）、各店家官網。
 

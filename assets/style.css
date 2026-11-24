@@ -273,6 +273,26 @@ details.grownup[open] summary { margin-bottom: 4px; }
 details.grownup h3 { font-size: 1.1rem; }
 details.grownup table { font-size: 0.88rem; }
 
+/* Zhuyin like a Taiwanese textbook: symbols stacked to the right of each character.
+   Markup comes from tools/build-zhuyin.js. Running text gets a bit larger; labels keep their size. */
+.zy { font-size: 1.15em; line-height: 2.1; }
+:is(h1, h2, h3, b, strong, button, .btn, .big, .daynum, .answer, small, .steps, .where-tag, .score, .next, .eyebrow, .verdict, .say) .zy { font-size: 1em; line-height: 1.6; }
+.zu { white-space: nowrap; }
+.zc { display: inline-flex; align-items: center; margin-right: 0.12em; vertical-align: middle; }
+.zb {
+  display: inline-flex; align-items: center;
+  margin-left: 0.06em;
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  font-weight: 400; font-size: 0.46em; line-height: 1.02; letter-spacing: 0;
+  color: inherit; opacity: 0.85;
+}
+.zcol { display: inline-flex; flex-direction: column; align-items: center; }
+.zs { writing-mode: vertical-rl; text-orientation: upright; letter-spacing: -0.08em; }
+.zl { line-height: 0.6; }
+.zt { align-self: flex-end; margin-left: -0.05em; padding-bottom: 0.15em; }
+:is(h1, h2) .zb { font-size: 0.36em; }
+.daynum .zb { font-size: 0.26em; }
+
 footer.site-foot {
   border-top: 1px solid var(--line);
   color: var(--muted);
