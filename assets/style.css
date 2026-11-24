@@ -273,25 +273,27 @@ details.grownup[open] summary { margin-bottom: 4px; }
 details.grownup h3 { font-size: 1.1rem; }
 details.grownup table { font-size: 0.88rem; }
 
-/* Zhuyin like a Taiwanese textbook: symbols stacked to the right of each character.
-   Markup comes from tools/build-zhuyin.js. Running text gets a bit larger; labels keep their size. */
-.zy { font-size: 1.15em; line-height: 2.1; }
-:is(h1, h2, h3, b, strong, button, .btn, .big, .daynum, .answer, small, .steps, .where-tag, .score, .next, .eyebrow, .verdict, .say) .zy { font-size: 1em; line-height: 1.6; }
-.zu { white-space: nowrap; }
-.zc { display: inline-flex; align-items: center; margin-right: 0.12em; vertical-align: middle; }
-.zb {
-  display: inline-flex; align-items: center;
-  margin-left: 0.06em;
-  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-  font-weight: 400; font-size: 0.46em; line-height: 1.02; letter-spacing: 0;
-  color: inherit; opacity: 0.85;
+/* Zhuyin: 注音粉圓 (BpmfHuninn, SIL OFL 1.1) draws the zhuyin beside each character itself.
+   tools/build-zhuyin.js wraps marked text in .zy and adds variation selectors for polyphones.
+   Punctuation (.zp) stays in the body font so it does not get the wide zhuyin cell. */
+@font-face {
+  font-family: "BpmfHuninn";
+  src: url("../fonts/BpmfHuninn-subset.woff2") format("woff2");
+  font-display: swap;
 }
-.zcol { display: inline-flex; flex-direction: column; align-items: center; }
-.zs { writing-mode: vertical-rl; text-orientation: upright; letter-spacing: -0.08em; }
-.zl { line-height: 0.6; }
-.zt { align-self: flex-end; margin-left: -0.05em; padding-bottom: 0.15em; }
-:is(h1, h2) .zb { font-size: 0.36em; }
-.daynum .zb { font-size: 0.26em; }
+.zy { font-family: "BpmfHuninn", var(--body); font-weight: 400; font-size: 1.12em; line-height: 1.9; }
+:is(h1, h2, h3, b, strong, button, .btn, .big, .daynum, .answer, small, .steps, .where-tag, .score, .next, .eyebrow, .verdict, .say) .zy { font-size: 1em; line-height: 1.5; }
+.zp { font-family: var(--body); }
+html.zy-off .zy { font-family: inherit; font-size: inherit; line-height: inherit; }
+.zy-toggle {
+  margin-left: auto;
+  font: inherit; font-size: 0.9rem; font-weight: 700;
+  border: 2px solid var(--line); border-radius: 999px;
+  background: var(--surface); color: var(--ink);
+  padding: 3px 12px; cursor: pointer;
+}
+.zy-toggle[aria-pressed="true"] { border-color: var(--yolk); background: var(--yolk-soft); }
+.zy-toggle:focus-visible { outline: 3px solid var(--yolk); outline-offset: 2px; }
 
 footer.site-foot {
   border-top: 1px solid var(--line);
