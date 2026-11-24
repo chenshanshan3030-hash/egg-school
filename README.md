@@ -6,7 +6,7 @@
 |---|---|
 | `index.html` | 從蛋到小雞：為什麼超市的蛋不會孵出小雞、21 天孵化時間軸、雞蛋剖面圖、小測驗 |
 | `farming.html` | 飼養方式：重點是蛋殼上的字母（O/F/B/E/C），可點選的蛋殼和五種雞媽媽的家，加上營養、動物福利比較 |
-| `taiwan-data.html` | 台灣養雞數據：農業部 114 年畜牧生產統計 |
+| `taiwan-data.html` | 舊網址（台灣養雞數據頁已移除，對小朋友太難），自動轉到 `index.html` |
 | `buy-eggs.html` | 哪裡買雞蛋：四種雞蛋去哪買、全聯動福蛋、有機蛋牧場、台中市店家、鴨蛋鵪鶉蛋等其他的蛋 |
 | `organic.html` | 舊網址，自動轉到 `buy-eggs.html` |
 | `washed-eggs.html` | 舊網址（洗選蛋頁已移除，對小朋友太難），自動轉到 `farming.html#letters` |
