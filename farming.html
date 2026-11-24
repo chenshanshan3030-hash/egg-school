@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Iansui&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="assets/style.css?v=2">
 <style>
-/* Letters are the star of this page: big yolk badges, a clickable eggshell, and one card per letter. */
+/* Letters are the star of this page: one eggshell plus one clickable card per letter. */
 .homes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
 .home {
   background: var(--surface); border: 2px solid var(--line); border-radius: 20px;
@@ -35,24 +35,14 @@
 .grass { fill: var(--leaf); }
 .sun { fill: var(--yolk); }
 
-.decoder { display: grid; grid-template-columns: 280px 1fr; gap: 24px; align-items: center; }
-.decoder > svg { width: 100%; max-width: 280px; justify-self: center; }
+.egg-intro { display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center; }
+.egg-intro svg { width: 100%; max-width: 200px; justify-self: center; }
 .shell-fill { fill: var(--shell); stroke: var(--shell-line); stroke-width: 2.5; }
 .ink-print { fill: #2b3a67; font-family: var(--body); font-weight: 700; }
 .ring { fill: none; stroke: var(--berry); stroke-width: 4; }
-.letters { display: flex; gap: 10px; flex-wrap: wrap; }
-.letters .btn {
-  width: 64px; height: 64px; padding: 0; border-radius: 50%;
-  font-size: 2rem; line-height: 1;
-}
-.meaning { display: grid; grid-template-columns: 130px 1fr; gap: 14px; align-items: center; min-height: 8.5em; }
-.meaning svg { width: 100%; height: auto; }
-.meaning b { font-family: var(--display); font-weight: 400; font-size: 1.8rem; }
 @media (max-width: 640px) {
-  .decoder { grid-template-columns: 1fr; }
-  .decoder > svg { max-width: 220px; }
-  .meaning { grid-template-columns: 1fr; text-align: center; }
-  .meaning svg { max-width: 150px; justify-self: center; }
+  .egg-intro { grid-template-columns: 1fr; text-align: center; }
+  .egg-intro svg { max-width: 170px; }
 }
 .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .verdict { font-family: var(--display); font-size: 1.5rem; color: var(--yolk-deep); }
@@ -84,7 +74,7 @@ details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-c
       <p class="eyebrow">雞媽媽的家</p>
       <h1>雞媽媽住在哪裡？</h1>
       <p class="answer">看蛋殼上的字母就知道！</p>
-      <p class="lede">有的雞媽媽住在小小的籠子裡，有的可以在大房子裡走來走去，有的還可以到院子曬太陽。蛋殼上印的<b>字母</b>，會告訴你雞媽媽住在哪一種家。</p>
+      <p class="lede">有的雞媽媽住在小小的籠子裡，有的可以在大房子裡走來走去，有的還可以到院子曬太陽。</p>
     </div>
     <img class="pic-lg" src="assets/img/farm.svg" alt="紅色的雞舍和草地上的雞">
   </header>
@@ -104,39 +94,17 @@ details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-c
   </svg>
 
   <section aria-labelledby="letters-title" id="letters">
-    <p class="eyebrow">重點來了</p>
     <h2 id="letters-title">蛋殼上的字母，就是雞媽媽的家</h2>
-    <p class="lede">很多雞蛋的蛋殼上會印兩行字。第二行最後面的<b>字母</b>，告訴你這顆蛋的雞媽媽住在哪裡。點點看每個字母！</p>
-    <div class="card decoder">
-      <svg viewBox="0 0 280 230" role="img" aria-label="蛋殼印字示意圖：第二行最後面的字母，圈起來的就是重點">
+    <div class="egg-intro">
+      <svg viewBox="0 0 280 230" role="img" aria-label="蛋殼印字示意圖：第二行最後面的字母被圈起來">
         <path class="shell-fill" d="M140 222 C 82 222 50 168 50 118 C 50 56 90 10 140 10 C 190 10 230 56 230 118 C 230 168 198 222 140 222 Z"/>
         <text class="ink-print" x="140" y="104" text-anchor="middle" font-size="17">（農場編號）</text>
         <text class="ink-print" x="116" y="142" text-anchor="middle" font-size="17">（日期）</text>
         <circle class="ring" cx="190" cy="133" r="22"/>
         <text class="ink-print" id="codeLetter" x="190" y="144" text-anchor="middle" font-size="30">O</text>
       </svg>
-      <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
-        <div class="letters" role="group" aria-label="選一個字母">
-          <button class="btn" type="button" data-k="O" aria-pressed="true">O</button>
-          <button class="btn" type="button" data-k="F" aria-pressed="false">F</button>
-          <button class="btn" type="button" data-k="B" aria-pressed="false">B</button>
-          <button class="btn" type="button" data-k="E" aria-pressed="false">E</button>
-          <button class="btn" type="button" data-k="C" aria-pressed="false">C</button>
-        </div>
-        <div class="meaning note-sky" aria-live="polite">
-          <div id="mPic"></div>
-          <div>
-            <b id="mName">O：有機的家</b>
-            <p id="mText"></p>
-          </div>
-        </div>
-      </div>
+      <p class="lede">很多雞蛋的蛋殼上會印字。第二行最後面圈起來的<b>字母</b>，告訴你這顆蛋的雞媽媽住在哪裡。點下面的家看看！</p>
     </div>
-    <p class="note">圖是畫給小朋友看的樣子，真的蛋殼上印的字會不一樣。</p>
-  </section>
-
-  <section aria-labelledby="homes">
-    <h2 id="homes">五個字母，五種家</h2>
     <div class="homes">
       <button class="home" type="button" data-k="C" aria-pressed="false">
         <span class="big-letter">C</span>
@@ -164,6 +132,7 @@ details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-c
         <b>有機的家</b><span class="say">有院子，還吃有機的食物。</span>
       </button>
     </div>
+    <p class="note">圖是畫給小朋友看的樣子，真的蛋殼上印的字會不一樣。</p>
   </section>
 
   <section aria-labelledby="better">
@@ -189,7 +158,6 @@ details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-c
         <p>有沒有洗乾淨、有沒有放冰箱，比住在哪裡更重要。</p>
       </div>
     </div>
-    <p class="kid">小補充：「蛋的營養都差不多，差別在雞媽媽住的是小房間、大房間、大客廳，還是有院子的房子。」</p>
   </section>
 
   <section aria-labelledby="quiz">
@@ -242,38 +210,17 @@ details.grownup .table-wrap td:last-child, details.grownup .table-wrap th:last-c
 <script src="assets/quiz.js?v=2"></script>
 <script>
 (function () {
-  var M = {
-    O: ["有機的家", "雞媽媽可以到院子玩，還吃有機的食物。"],
-    F: ["有院子的家", "雞媽媽可以到外面曬太陽、吃草和小蟲。"],
-    B: ["大客廳", "雞媽媽不住籠子，可以在大房子裡走來走去、洗沙澡。"],
-    E: ["大一點的房間", "還是住在籠子裡，但是比較大，有可以站的棍子和生蛋的小窩。"],
-    C: ["小房間", "住在小小的籠子裡，很擠，不能走來走去。"]
-  };
-  var btns = document.querySelectorAll(".letters .btn");
   var cards = document.querySelectorAll(".home");
-  var name = document.getElementById("mName"), text = document.getElementById("mText");
-  var letter = document.getElementById("codeLetter"), pic = document.getElementById("mPic");
+  var letter = document.getElementById("codeLetter");
   function pick(k) {
-    btns.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.k === k ? "true" : "false"); });
     cards.forEach(function (c) { c.setAttribute("aria-pressed", c.dataset.k === k ? "true" : "false"); });
-    name.textContent = k + "：" + M[k][0];
-    text.textContent = M[k][1];
     letter.textContent = k;
-    var card = document.querySelector('.home[data-k="' + k + '"] svg');
-    pic.innerHTML = card ? card.outerHTML : "";
   }
-  btns.forEach(function (b) { b.addEventListener("click", function () { pick(b.dataset.k); }); });
-  cards.forEach(function (c) {
-    c.addEventListener("click", function () {
-      pick(c.dataset.k);
-      document.getElementById("letters").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
+  cards.forEach(function (c) { c.addEventListener("click", function () { pick(c.dataset.k); }); });
   pick("O");
 
   renderQuiz(document.getElementById("quizBox"), document.getElementById("score"), [
     ["蛋殼上印 C，表示雞媽媽住在小房間。", true, "是真的！C 是很擠的小籠子。"],
-    ["蛋殼上印 F，表示雞媽媽可以到院子玩。", true, "是真的！F 的雞媽媽可以到外面曬太陽。"],
     ["蛋殼上印 B，表示雞媽媽住在小籠子裡。", false, "是假的！B 是大客廳，雞媽媽可以走來走去。"],
     ["蛋殼上印 O，表示雞媽媽吃有機的食物。", true, "是真的！O 是有機的家。"],
     ["住在院子的雞媽媽，生的蛋一定比較營養。", false, "是假的！營養差不多，雞媽媽吃什麼比較重要。"]
